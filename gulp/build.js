@@ -16,22 +16,6 @@ internals.$ = LoadPlugins({
 /********************
  * GULP BUILD TASKS *
  ********************/
-Gulp.task('test', (done) => {
-
-    exec('npm test', (err, stdout, stderr) => {
-
-        if (stdout) {
-            console.log(stdout);
-        }
-
-        if (stderr) {
-            console.error(stderr);
-        }
-
-        done(err);
-    });
-});
-
 Gulp.task('transform', (done) => {
 
     let error;
@@ -91,6 +75,21 @@ Gulp.task('build', ['clean', 'transform', 'static-files']);
 /********************
  * GULP DEV TASKS *
  ********************/
+Gulp.task('test', (done) => {
+
+    exec('npm test', (err, stdout, stderr) => {
+
+        if (stdout) {
+            console.log(stdout);
+        }
+
+        if (stderr) {
+            console.error(stderr);
+        }
+
+        done(err);
+    });
+});
 
 Gulp.task('dev', ['test'], () => {
 
