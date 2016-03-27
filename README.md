@@ -178,7 +178,7 @@ RxHttpRequest.get('https://api.github.com/user/repos', options).subscribe(
 
 [Back to top](#table-of-contents)
 
-### .post(uri[, options])
+### `.post(uri[, options])`
 
 Performs a request with `post` http method.
 
@@ -239,7 +239,7 @@ RxHttpRequest.post('http://posttestserver.com/posts', options).subscribe(
 
 [Back to top](#table-of-contents)
 
-### .put(uri[, options])
+### `.put(uri[, options])`
 
 Performs a request with `put` http method.
 
@@ -258,7 +258,7 @@ RxHttpRequest.put(uri).subscribe(...);
 
 [Back to top](#table-of-contents)
 
-### .patch(uri[, options])
+### `.patch(uri[, options])`
 
 Performs a request with `patch` http method.
 
@@ -277,7 +277,7 @@ RxHttpRequest.patch(uri).subscribe(...);
 
 [Back to top](#table-of-contents)
 
-### .delete(uri[, options])
+### `.delete(uri[, options])`
 
 Performs a request with `delete` http method.
 
@@ -296,7 +296,7 @@ RxHttpRequest.delete(uri).subscribe(...);
 
 [Back to top](#table-of-contents)
 
-### .head(uri[, options])
+### `.head(uri[, options])`
 
 **Parameters:**
 > - ***uri*** *(required): The `uri` where request will be performed*
