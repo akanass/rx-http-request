@@ -22,7 +22,7 @@ The world-famous HTTP client [Request](https://github.com/request/request) now [
 
 ## Super simple to use
 
-RX-HTTP-Request is designed to be the simplest way possible to make http calls.
+**RX-HTTP-Request** is designed to be the simplest way possible to make http calls.
 
 It's fully `ES2015` wrotten so you can import it :
 
@@ -49,3 +49,17 @@ RxHttpRequest.get('http://www.google.fr').subscribe(
     (err) => console.error(err) // Show error in console
 );
 ```
+
+## API in Detail
+
+**RX-HTTP-Request** uses [Request](https://github.com/request/request) **API** to perform calls and returns [RxJS.Observable](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md).
+
+--
+
+All **options** to pass to **API** **methods** can be found [here](https://github.com/request/request#requestoptions-callback).
+
+--
+
+All **methods** to execute on **response objects** can be found [here](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#observable-instance-methods).
+
+--
