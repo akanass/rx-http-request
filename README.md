@@ -81,7 +81,7 @@ All **methods** to execute on **response objects** can be found [here](https://g
 --------
 
 
-### .request
+### `.request`
 
 Returns the original [Request](https://github.com/request/request#requestoptions-callback) **API** to perform calls without `RxJS.Observable` response but with a **callback method**.
 
@@ -98,7 +98,7 @@ RxHttpRequest.request({uri: 'http://www.google.fr'}, (error, response, body) => 
 
 [Back to top](#table-of-contents)
 
-### .details(options)
+### `.details(options)`
 
 This method **returns a wrapper** around the normal **RX-HTTP-Request API**  that defaults to whatever options you pass to it.
 
