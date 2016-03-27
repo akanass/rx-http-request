@@ -54,12 +54,10 @@ RxHttpRequest.get('http://www.google.fr').subscribe(
 
 **RX-HTTP-Request** uses [Request](https://github.com/request/request) **API** to perform calls and returns [RxJS.Observable](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md).
 
----
+--------
 
 All **options** to pass to **API** **methods** can be found [here](https://github.com/request/request#requestoptions-callback).
 
----
-
 All **methods** to execute on **response objects** can be found [here](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#observable-instance-methods).
 
----
+--------
