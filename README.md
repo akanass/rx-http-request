@@ -24,6 +24,9 @@ The world-famous HTTP client [Request](https://github.com/request/request) now [
 
 * [Super simple to use](#super-simple-to-use)
 * [API in Detail](#api-in-detail)
+    * [.request](#request)
+    * [.details(options)](#detailsoptions)
+    * [.get(uri [,options])](#geturi-options)
 * [Change History](#change-history)
 * [License](#license)
 
@@ -60,8 +63,6 @@ RxHttpRequest.get('http://www.google.fr').subscribe(
 ## API in Detail
 
 **RX-HTTP-Request** uses [Request](https://github.com/request/request) **API** to perform calls and returns [RxJS.Observable](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md).
-
---------
 
 All **options** to pass to **API** **methods** can be found [here](https://github.com/request/request#requestoptions-callback).
 
@@ -107,6 +108,30 @@ const specialRequest = baseRequest.defaults({
     headers: {special: 'special value'}
 });
 ```
+
+### .get(uri[, options])
+
+Performs a request with `get` http method.
+
+### .post(uri[, options])
+
+Performs a request with `post` http method.
+
+### .put(uri[, options])
+
+Performs a request with `put` http method.
+
+### .patch(uri[, options])
+
+Performs a request with `patch` http method.
+
+### .delete(uri[, options])
+
+Performs a request with `delete` http method.
+
+### .head(uri[, options])
+
+Performs a request with `head` http method.
 
 ## License
 
