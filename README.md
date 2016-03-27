@@ -27,11 +27,16 @@ The world-famous HTTP client [Request](https://github.com/request/request) now [
     * [.request](#request)
     * [.details(options)](#detailsoptions)
     * [.get(uri[,options])](#geturi-options)
+        * [Crawl a webpage](#crawl-a-webpage)
+        * [GET something from a JSON REST API](#get-something-from-a-json-rest-api)
     * [.post(uri[,options])](#posturi-options)
+        * [POST data to a JSON REST API](#post-data-to-a-json-rest-api)
+        * [POST like HTML forms do](#post-like-html-forms-do)
     * [.put(uri[,options])](#puturi-options)
     * [.patch(uri[,options])](#patchuri-options)
     * [.delete(uri[,options])](#deleteuri-options)
     * [.head(uri[,options])](#headuri-options)
+* [Contributing](#contributing)
 * [Change History](#change-history)
 * [License](#license)
 
@@ -118,8 +123,6 @@ const specialRequest = baseRequest.defaults({
 
 Performs a request with `get` http method.
 
-For example:
-
 #### Crawl a webpage
 
 ```javascript
@@ -165,8 +168,6 @@ RxHttpRequest.get('https://api.github.com/user/repos', options).subscribe(
 ### .post(uri[, options])
 
 Performs a request with `post` http method.
-
-For example:
 
 #### POST data to a JSON REST API
 
@@ -220,17 +221,58 @@ RxHttpRequest.post('http://posttestserver.com/posts', options).subscribe(
 
 Performs a request with `put` http method.
 
+```javascript
+import {RxHttpRequest} from 'rx-http-request';
+
+RxHttpRequest.put(uri).subscribe(...);
+```
+
 ### .patch(uri[, options])
 
 Performs a request with `patch` http method.
+
+```javascript
+import {RxHttpRequest} from 'rx-http-request';
+
+RxHttpRequest.patch(uri).subscribe(...);
+```
 
 ### .delete(uri[, options])
 
 Performs a request with `delete` http method.
 
+```javascript
+import {RxHttpRequest} from 'rx-http-request';
+
+RxHttpRequest.delete(uri).subscribe(...);
+```
+
 ### .head(uri[, options])
 
 Performs a request with `head` http method.
+
+```javascript
+import {RxHttpRequest} from 'rx-http-request';
+
+RxHttpRequest.head(uri).subscribe(...);
+```
+
+## Contributing
+
+To set up your development environment:
+
+1. clone the repo to your workspace,
+2. in the shell `cd` to the main folder,
+3. hit `npm install`,
+4. hit `npm install gulp -g` if you haven't installed gulp globally yet, and
+5. run `gulp`. (Or run node ./node_modules/.bin/gulp if you don't want to install gulp globally.)
+
+`gulp` watches all source files and if you save some changes it will lint the code and execute all tests. The test coverage report can be viewed from `./coverage/lcov-report/index.html`.
+
+## Change History
+
+* v1.0.0 (2016-03-27)
+    * Carefully rewritten from scratch to make RX-HTTP-Request a drop-in replacement for Request
 
 ## License
 
