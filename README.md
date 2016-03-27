@@ -4,13 +4,13 @@
 
 [![NPM](https://nodei.co/npm/rx-http-request.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/rx-http-request/)
 
-<a href="https://github.com/Reactive-Extensions/RxJS">
-    <img src="http://reactivex.io/assets/Rx_Logo_S.png"
-         align="right" valign="top" alt="ReactiveX logo" width="50" height="50" style="margin-right:10px"/>
-</a>
 <a href="https://babeljs.io/docs/learn-es2015/">
     <img src="http://image.slidesharecdn.com/4-es6metbabel-150513100342-lva1-app6891/95/es6-with-babeljs-1-638.jpg"
-         align="right" valign="top" alt="ES2015 logo" width="50" height="50" />
+         align="right" valign="top" alt="ES2015 logo" width="50" height="50" style="margin-right:10px" />
+</a>
+<a href="https://github.com/Reactive-Extensions/RxJS">
+    <img src="http://reactivex.io/assets/Rx_Logo_S.png"
+         align="right" valign="top" alt="ReactiveX logo" width="50" height="50"/>
 </a>
 
 # RX-HTTP-Request
