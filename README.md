@@ -76,7 +76,7 @@ RxHttpRequest.get('http://www.google.fr').subscribe(
 
 All **options** to pass to **API** **methods** can be found [here](https://github.com/request/request#requestoptions-callback).
 
-All **methods** to execute on **response objects** can be found [here](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#observable-instance-methods).
+All **methods** to execute on **response object** can be found [here](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#observable-instance-methods).
 
 --------
 
@@ -101,6 +101,12 @@ RxHttpRequest.request({uri: 'http://www.google.fr'}, (error, response, body) => 
 ### `.details(options)`
 
 This method **returns a wrapper** around the normal **RX-HTTP-Request API**  that defaults to whatever options you pass to it.
+
+**Parameters:**
+> ***options*** *(required): Original [Request](https://github.com/request/request#requestoptions-callback) `options` object with default values foreach next requests*
+
+**Response:**
+> ***new*** *`RxHttpRequest` instance*
 
 **Note:** `RxHttpRequest.defaults()` **does not** modify the global API; instead, it returns a wrapper that has your default settings applied to it.
 
