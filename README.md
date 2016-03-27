@@ -96,6 +96,8 @@ RxHttpRequest.request({uri: 'http://www.google.fr'}, (error, response, body) => 
 });
 ```
 
+[Back to top](#table-of-contents)
+
 ### .details(options)
 
 This method **returns a wrapper** around the normal **RX-HTTP-Request API**  that defaults to whatever options you pass to it.
@@ -119,9 +121,18 @@ const specialRequest = baseRequest.defaults({
 });
 ```
 
-### .get(uri[, options])
+[Back to top](#table-of-contents)
+
+### `.get(uri[, options])`
 
 Performs a request with `get` http method.
+
+**Parameters:**
+> - ***uri*** *(required): The `uri` where request will be performed*
+> - ***options*** *(optional): Original [Request](https://github.com/request/request#requestoptions-callback) `options` object*
+
+**Response:**
+> *[RxJS.Observable](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md) instance*
 
 #### Crawl a webpage
 
@@ -165,9 +176,18 @@ RxHttpRequest.get('https://api.github.com/user/repos', options).subscribe(
 );
 ```
 
+[Back to top](#table-of-contents)
+
 ### .post(uri[, options])
 
 Performs a request with `post` http method.
+
+**Parameters:**
+> - ***uri*** *(required): The `uri` where request will be performed*
+> - ***options*** *(optional): Original [Request](https://github.com/request/request#requestoptions-callback) `options` object*
+
+**Response:**
+> *[RxJS.Observable](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md) instance*
 
 #### POST data to a JSON REST API
 
@@ -217,9 +237,18 @@ RxHttpRequest.post('http://posttestserver.com/posts', options).subscribe(
 );
 ```
 
+[Back to top](#table-of-contents)
+
 ### .put(uri[, options])
 
 Performs a request with `put` http method.
+
+**Parameters:**
+> - ***uri*** *(required): The `uri` where request will be performed*
+> - ***options*** *(optional): Original [Request](https://github.com/request/request#requestoptions-callback) `options` object*
+
+**Response:**
+> *[RxJS.Observable](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md) instance*
 
 ```javascript
 import {RxHttpRequest} from 'rx-http-request';
@@ -227,9 +256,18 @@ import {RxHttpRequest} from 'rx-http-request';
 RxHttpRequest.put(uri).subscribe(...);
 ```
 
+[Back to top](#table-of-contents)
+
 ### .patch(uri[, options])
 
 Performs a request with `patch` http method.
+
+**Parameters:**
+> - ***uri*** *(required): The `uri` where request will be performed*
+> - ***options*** *(optional): Original [Request](https://github.com/request/request#requestoptions-callback) `options` object*
+
+**Response:**
+> *[RxJS.Observable](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md) instance*
 
 ```javascript
 import {RxHttpRequest} from 'rx-http-request';
@@ -237,9 +275,18 @@ import {RxHttpRequest} from 'rx-http-request';
 RxHttpRequest.patch(uri).subscribe(...);
 ```
 
+[Back to top](#table-of-contents)
+
 ### .delete(uri[, options])
 
 Performs a request with `delete` http method.
+
+**Parameters:**
+> - ***uri*** *(required): The `uri` where request will be performed*
+> - ***options*** *(optional): Original [Request](https://github.com/request/request#requestoptions-callback) `options` object*
+
+**Response:**
+> *[RxJS.Observable](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md) instance*
 
 ```javascript
 import {RxHttpRequest} from 'rx-http-request';
@@ -247,7 +294,16 @@ import {RxHttpRequest} from 'rx-http-request';
 RxHttpRequest.delete(uri).subscribe(...);
 ```
 
+[Back to top](#table-of-contents)
+
 ### .head(uri[, options])
+
+**Parameters:**
+> - ***uri*** *(required): The `uri` where request will be performed*
+> - ***options*** *(optional): Original [Request](https://github.com/request/request#requestoptions-callback) `options` object*
+
+**Response:**
+> *[RxJS.Observable](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md) instance*
 
 Performs a request with `head` http method.
 
@@ -256,6 +312,8 @@ import {RxHttpRequest} from 'rx-http-request';
 
 RxHttpRequest.head(uri).subscribe(...);
 ```
+
+[Back to top](#table-of-contents)
 
 ## Contributing
 
@@ -269,11 +327,17 @@ To set up your development environment:
 
 `gulp` watches all source files and if you save some changes it will lint the code and execute all tests. The test coverage report can be viewed from `./coverage/lcov-report/index.html`.
 
+[Back to top](#table-of-contents)
+
 ## Change History
 
 * v1.0.0 (2016-03-27)
     * Carefully rewritten from scratch to make RX-HTTP-Request a drop-in replacement for Request
+    
+[Back to top](#table-of-contents)
 
 ## License
 
 Copyright (c) 2016 **Nicolas Jessel** Licensed under the [MIT license](https://github.com/njl07/rx-http-request/tree/master/LICENSE.md).
+
+[Back to top](#table-of-contents)
