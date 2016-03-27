@@ -20,6 +20,13 @@
 
 The world-famous HTTP client [Request](https://github.com/request/request) now [RxJS](https://github.com/Reactive-Extensions/RxJS) compliant and wrote in full [ES2015](https://babeljs.io/docs/learn-es2015/).
 
+## Table of contents
+
+* [Super simple to use](#super-simple-to-use)
+* [API in Detail](#api-in-detail)
+* [Change History](#change-history)
+* [License](#license)
+
 ## Super simple to use
 
 **RX-HTTP-Request** is designed to be the simplest way possible to make http calls.
@@ -61,3 +68,46 @@ All **options** to pass to **API** **methods** can be found [here](https://githu
 All **methods** to execute on **response objects** can be found [here](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#observable-instance-methods).
 
 --------
+
+
+### .request
+
+Returns the original [Request](https://github.com/request/request#requestoptions-callback) **API** to perform calls without `RxJS.Observable` response but with a **callback method**.
+
+```javascript
+import {RxHttpRequest} from 'rx-http-request';
+
+RxHttpRequest.request({uri: 'http://www.google.fr'}, (error, response, body) => {
+
+    if (!error && response.statusCode == 200) {
+        console.log(body); // Show the HTML for the Google homepage.
+    }
+});
+```
+
+### .details(options)
+
+This method **returns a wrapper** around the normal **RX-HTTP-Request API**  that defaults to whatever options you pass to it.
+
+**Note:** `RxHttpRequest.defaults()` **does not** modify the global API; instead, it returns a wrapper that has your default settings applied to it.
+
+**Note:** You can call `.defaults()` on the wrapper that is returned from `RxHttpRequest.defaults()` to add/override defaults that were previously defaulted.
+
+For example:
+ 
+```javascript
+// requests using baseRequest will set the 'x-token' header
+const baseRequest = RxHttpRequest.defaults({
+    headers: {'x-token': 'my-token'}
+});
+
+// requests using specialRequest will include the 'x-token' header set in
+// baseRequest and will also include the 'special' header
+const specialRequest = baseRequest.defaults({
+    headers: {special: 'special value'}
+});
+```
+
+## License
+
+Copyright (c) 2016 **Nicolas Jessel** Licensed under the [MIT license](https://github.com/njl07/rx-http-request/tree/master/LICENSE.md).
