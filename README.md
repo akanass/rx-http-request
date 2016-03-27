@@ -1,5 +1,3 @@
-[![NPM](https://nodei.co/npm/rx-http-request.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/rx-http-request/)
-
 <div style="overflow:hidden">
     <h1>RX-HTTP-Request</h1>
     <div style="float:right;">
@@ -14,9 +12,12 @@
     </div>    
 </div>
 
+[![NPM](https://nodei.co/npm/rx-http-request.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/rx-http-request/)
+
 [![Build Status](https://travis-ci.org/njl07/rx-http-request.svg?branch=master)](https://travis-ci.org/njl07/rx-http-request)
 [![Coverage Status](https://coveralls.io/repos/github/njl07/rx-http-request/badge.svg?branch=master)](https://coveralls.io/github/njl07/rx-http-request?branch=master)
-[![npm version](https://badge.fury.io/js/rx-http-request.png)](http://badge.fury.io/js/rx-http-request)
+[![Dependencies](https://david-dm.org/njl07/rx-http-request.svg)](https://david-dm.org/njl07/rx-http-request)
+[![DevDependencies](https://david-dm.org/njl07/rx-http-request.svg#info=devDependencies)](https://david-dm.org/njl07/rx-http-request)
 
 The world-famous HTTP client [Request](https://github.com/request/request) now [RxJS](https://github.com/Reactive-Extensions/RxJS) compliant and wrote in full [ES2015](https://babeljs.io/docs/learn-es2015/).
 
