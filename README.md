@@ -26,7 +26,12 @@ The world-famous HTTP client [Request](https://github.com/request/request) now [
 * [API in Detail](#api-in-detail)
     * [.request](#request)
     * [.details(options)](#detailsoptions)
-    * [.get(uri [,options])](#geturi-options)
+    * [.get(uri[,options])](#geturi-options)
+    * [.post(uri[,options])](#posturi-options)
+    * [.put(uri[,options])](#puturi-options)
+    * [.patch(uri[,options])](#patchuri-options)
+    * [.delete(uri[,options])](#deleteuri-options)
+    * [.head(uri[,options])](#headuri-options)
 * [Change History](#change-history)
 * [License](#license)
 
@@ -113,9 +118,103 @@ const specialRequest = baseRequest.defaults({
 
 Performs a request with `get` http method.
 
+For example:
+
+#### Crawl a webpage
+
+```javascript
+import {RxHttpRequest} from 'rx-http-request';
+
+RxHttpRequest.get('http://www.google.fr').subscribe(
+    (data) => {
+
+        if (data.response.statusCode === 200) {
+            console.log(data.body); // Show the HTML for the Google homepage.
+        }
+    },
+    (err) => console.error(err) // Show error in console
+);
+```
+
+#### GET something from a JSON REST API
+     
+```javascript
+import {RxHttpRequest} from 'rx-http-request';
+
+const options = {
+    qs: {
+        access_token: 'xxxxx xxxxx' // -> uri + '?access_token=xxxxx%20xxxxx'
+    },
+    headers: {
+        'User-Agent': 'RX-HTTP-Request'
+    },
+    json: true // Automatically parses the JSON string in the response
+};
+
+RxHttpRequest.get('https://api.github.com/user/repos', options).subscribe(
+    (data) => {
+
+        if (data.response.statusCode === 200) {
+            console.log(data.body); // Show the JSON response object.
+        }
+    },
+    (err) => console.error(err) // Show error in console
+);
+```
+
 ### .post(uri[, options])
 
 Performs a request with `post` http method.
+
+For example:
+
+#### POST data to a JSON REST API
+
+```javascript
+import {RxHttpRequest} from 'rx-http-request';
+
+const options = {
+    body: {
+        some: 'payload'
+    },
+    json: true // Automatically stringifies the body to JSON
+};
+
+RxHttpRequest.post('http://posttestserver.com/posts', options).subscribe(
+    (data) => {
+
+        if (data.response.statusCode === 201) {
+            console.log(data.body); // Show the JSON response object.
+        }
+    },
+    (err) => console.error(err) // Show error in console
+);
+```
+
+#### POST like HTML forms do
+
+```javascript
+import {RxHttpRequest} from 'rx-http-request';
+
+const options = {
+    form: {
+        some: 'payload' // Will be urlencoded
+    },
+    headers: {
+        /* 'content-type': 'application/x-www-form-urlencoded' */ // Set automatically
+    }
+};
+
+RxHttpRequest.post('http://posttestserver.com/posts', options).subscribe(
+    (data) => {
+
+        if (data.response.statusCode === 201) {
+            console.log(data.body); // POST succeeded...
+        }
+    },
+    (err) => console.error(err) // Show error in console
+);
+```
 
 ### .put(uri[, options])
 
