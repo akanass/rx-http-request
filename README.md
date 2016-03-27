@@ -21,3 +21,31 @@
 The world-famous HTTP client [Request](https://github.com/request/request) now [RxJS](https://github.com/Reactive-Extensions/RxJS) compliant and wrote in full [ES2015](https://babeljs.io/docs/learn-es2015/).
 
 ## Super simple to use
+
+RX-HTTP-Request is designed to be the simplest way possible to make http calls.
+
+It's fully `ES2015` wrotten so you can import it :
+
+```javascript
+import {RxHttpRequest} from 'rx-http-request';
+```
+
+or use `CommonJS`:
+
+```javascript
+const RxHttpRequest = require('rx-http-request').RxHttpRequest;
+```
+
+Now, it's easy to perform a `HTTP` request:
+
+```javascript
+RxHttpRequest.get('http://www.google.fr').subscribe(
+    (data) => {
+
+        if (data.response.statusCode === 200) {
+            console.log(data.body); // Show the HTML for the Google homepage.
+        }
+    },
+    (err) => console.error(err) // Show error in console
+);
+```
