@@ -1,0 +1,7 @@
+--ui tdd
+--report lcovonly
+--reporter spec
+--recursive
+--compilers js:babel-core/register
+--throw-deprecation
+--colors
