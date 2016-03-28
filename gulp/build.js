@@ -10,13 +10,13 @@ const internals   = {};
 
 // set internals variables
 internals.$ = LoadPlugins({
-    pattern: ['gulp-*', 'uglify-save-license', 'del']
+    pattern: ['gulp-*', 'uglify-save-license', 'del', 'browserify', 'babelify', 'vinyl-source-stream', 'vinyl-buffer']
 });
 
 /********************
  * GULP BUILD TASKS *
  ********************/
-Gulp.task('transform', (done) => {
+Gulp.task('package', (done) => {
 
     let error;
 
@@ -38,19 +38,26 @@ Gulp.task('transform', (done) => {
         .on('exit', (code) => {
 
             if (code === 0) {
-                Gulp.src(['./index.js', './lib/**/*.js'], { base: './' })
-                    .pipe(internals.$.sourcemaps.init())
-                    .pipe(internals.$.babel())
-                    .pipe(internals.$.uglify({ preserveComments: internals.$.uglifySaveLicense }))
-                    .pipe(internals.$.sourcemaps.write('.'))
-                    .pipe(Gulp.dest('dist/'))
-                    .pipe(internals.$.size({ title: 'dist/', showFiles: true }))
-                    .on('end', () =>  done());
+                Gulp.start('transform');
+                Gulp.start('browserify');
+
+                done();
             }
             else {
                 done(error);
             }
     });
+});
+
+Gulp.task('transform', () => {
+
+    Gulp.src(['./index.js', './lib/**/*.js'], { base: './' })
+        .pipe(internals.$.sourcemaps.init())
+        .pipe(internals.$.babel())
+        .pipe(internals.$.uglify({ preserveComments: internals.$.uglifySaveLicense }))
+        .pipe(internals.$.sourcemaps.write('.'))
+        .pipe(Gulp.dest('dist/'))
+        .pipe(internals.$.size({ title: 'dist/', showFiles: true }));
 });
 
 Gulp.task('clean', () => {
@@ -70,7 +77,21 @@ Gulp.task('static-files', () => {
         .pipe(internals.$.size({ title: 'dist/', showFiles: true }));
 });
 
-Gulp.task('build', ['clean', 'transform', 'static-files']);
+Gulp.task('browserify', () => {
+
+    return internals.$.browserify({entries: './index.js', debug: true, standalone: 'rhr'})
+        .transform(internals.$.babelify)
+        .bundle()
+        .pipe(internals.$.vinylSourceStream('browser.js'))
+        .pipe(internals.$.vinylBuffer())
+        .pipe(internals.$.sourcemaps.init({loadMaps: true}))
+        .pipe(internals.$.uglify())
+        .pipe(internals.$.sourcemaps.write('.'))
+        .pipe(Gulp.dest('dist/'))
+        .pipe(internals.$.size({ title: 'dist/', showFiles: true }));
+});
+
+Gulp.task('build', ['clean', 'package', 'static-files']);
 
 /********************
  * GULP DEV TASKS *

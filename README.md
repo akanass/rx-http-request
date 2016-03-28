@@ -18,11 +18,12 @@
 [![Dependencies](https://david-dm.org/njl07/rx-http-request.svg)](https://david-dm.org/njl07/rx-http-request)
 [![DevDependencies](https://david-dm.org/njl07/rx-http-request/dev-status.svg)](https://david-dm.org/njl07/rx-http-request#info=devDependencies)
 
-The world-famous HTTP client [Request](https://github.com/request/request) now [RxJS](https://github.com/Reactive-Extensions/RxJS) compliant and wrote in full [ES2015](https://babeljs.io/docs/learn-es2015/).
+The world-famous HTTP client [Request](https://github.com/request/request) now [RxJS](https://github.com/Reactive-Extensions/RxJS) compliant, wrote in full [ES2015](https://babeljs.io/docs/learn-es2015/) for client and server side.
 
 ## Table of contents
 
 * [Super simple to use](#super-simple-to-use)
+* [Browser compatibility](#browser-compatibility)
 * [API in Detail](#api-in-detail)
     * [.request](#request)
     * [.details(options)](#detailsoptions)
@@ -68,6 +69,31 @@ RxHttpRequest.get('http://www.google.fr').subscribe(
     },
     (err) => console.error(err) // Show error in console
 );
+```
+
+## Browser compatibility
+
+**RX-HTTP-Request** can be used in your favorite browser to have all features in your own front application.
+
+Just import `browser.js` script and enjoy:
+
+```javascript
+<script src="node_modules/rx-http-request/browser.js" type="application/javascript"></script>
+<script type="application/javascript">
+    const RxHttpRequest = rhr.RxHttpRequest;
+    
+    RxHttpRequest.get('http://www.google.fr').subscribe(
+        function(data){
+    
+            if (data.response.statusCode === 200) {
+                console.log(data.body); // Show the HTML for the Google homepage.
+            }
+        },
+        function(err){
+            console.error(err) // Show error in console
+        }
+    );
+</script>
 ```
 
 ## API in Detail
@@ -337,6 +363,8 @@ To set up your development environment:
 
 ## Change History
 
+* v1.1.0 (2016-03-28)
+    * Browserify to have browser compatibility
 * v1.0.0 (2016-03-27)
     * Carefully rewritten from scratch to make RX-HTTP-Request a drop-in replacement for Request
     
