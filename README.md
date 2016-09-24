@@ -26,7 +26,7 @@ The world-famous HTTP client [Request](https://github.com/request/request) now [
 * [Browser compatibility](#browser-compatibility)
 * [API in Detail](#api-in-detail)
     * [.request](#request)
-    * [.details(options)](#detailsoptions)
+    * [.defaults(options)](#defaultsoptions)
     * [.get(uri[,options])](#geturi-options)
         * [Crawl a webpage](#crawl-a-webpage)
         * [GET something from a JSON REST API](#get-something-from-a-json-rest-api)
@@ -124,7 +124,7 @@ RxHttpRequest.request({uri: 'http://www.google.fr'}, (error, response, body) => 
 
 [Back to top](#table-of-contents)
 
-### `.details(options)`
+### `.defaults(options)`
 
 This method **returns a wrapper** around the normal **RX-HTTP-Request API**  that defaults to whatever options you pass to it.
 
