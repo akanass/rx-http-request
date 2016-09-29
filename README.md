@@ -363,6 +363,11 @@ To set up your development environment:
 
 ## Change History
 
+* v1.2.0 (2016-09-29)
+    * New package version for `RxJS` and `Request`
+    * New `ES6` features
+    * [Issue 1](https://github.com/njl07/rx-http-request/issues/1)
+    * [Issue 2](https://github.com/njl07/rx-http-request/issues/2)
 * v1.1.0 (2016-03-28)
     * Browserify to have browser compatibility
 * v1.0.0 (2016-03-27)

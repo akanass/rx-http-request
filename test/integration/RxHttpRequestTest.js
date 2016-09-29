@@ -31,7 +31,8 @@ describe('- Integration RxHttpRequestTest file', () => {
 
             it('- `Observable` rejects response if bad `uri` parameter', () => {
 
-                internals._RxHttpRequest._call('get', internals._constants.fakeUri).subscribeOnError(
+                internals._RxHttpRequest._call('get', internals._constants.fakeUri).subscribe(
+                    null,
                     (err) => {
 
                         test.error(err);

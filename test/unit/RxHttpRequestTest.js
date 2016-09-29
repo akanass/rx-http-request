@@ -4,7 +4,7 @@
 import {RxHttpRequest} from '../..';
 import {RxHttpRequestClass} from '../../lib';
 import * as test from 'unit.js';
-import * as Rx from 'rx';
+import * as Rx from 'rxjs';
 
 // define internals object for private methods and attributes
 const internals = {};
@@ -65,7 +65,7 @@ describe('- Unit RxHttpRequestTest file', () => {
                 const method = 'get';
                 internals._RxHttpRequestMockRequest.expects(method).once().callsArg(2);
 
-                test.object(internals._RxHttpRequest._call(method, internals._constants.uri).subscribeOnNext())
+                test.object(internals._RxHttpRequest._call(method, internals._constants.uri).subscribe())
                     .when(() => {
 
                         internals._RxHttpRequestMockRequest.verify();
@@ -79,7 +79,7 @@ describe('- Unit RxHttpRequestTest file', () => {
                 const method = 'get';
                 internals._RxHttpRequestMockRequest.expects(method).once().callsArg(2);
 
-                internals._RxHttpRequest._call(method, internals._constants.uri).subscribeOnNext(
+                internals._RxHttpRequest._call(method, internals._constants.uri).subscribe(
                     (data) => {
 
                         test.object(data)
@@ -95,7 +95,8 @@ describe('- Unit RxHttpRequestTest file', () => {
 
             it('- `Observable` rejects response if bad `method` parameter', () => {
 
-                internals._RxHttpRequest._call().subscribeOnError(
+                internals._RxHttpRequest._call().subscribe(
+                    null,
                     (err) => {
 
                         test.error(err);
