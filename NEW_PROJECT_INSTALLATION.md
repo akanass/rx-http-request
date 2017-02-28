@@ -27,7 +27,7 @@ or
 
 ```sh
 $ yarn cache clean
-$ yarn add @types/fs-extra @types/node @types/request browserify coveralls exorcist fs-extra istanbul@next mocha mocha-typescript rimraf ts-node tslint typescript unit.js --dev
+$ yarn add @types/fs-extra @types/node @types/request browserify coveralls exorcist fs-extra istanbul@1.1.0-alpha.1 mocha mocha-typescript rimraf ts-node tslint typescript unit.js --dev
 ```
 
 ## Conclusion

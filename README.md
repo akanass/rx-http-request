@@ -2,12 +2,18 @@
 
 <div style="overflow:hidden;margin-bottom:20px;">
 <div style="float:left;line-height:60px">
-
-[![Build Status](https://travis-ci.org/njl07/rx-http-request.svg?branch=master)](https://travis-ci.org/njl07/rx-http-request)
-[![Coverage Status](https://coveralls.io/repos/github/njl07/rx-http-request/badge.svg?branch=master)](https://coveralls.io/github/njl07/rx-http-request?branch=master)
-[![Dependencies](https://david-dm.org/njl07/rx-http-request.svg)](https://david-dm.org/njl07/rx-http-request)
-[![DevDependencies](https://david-dm.org/njl07/rx-http-request/dev-status.svg)](https://david-dm.org/njl07/rx-http-request?type=dev)
-
+    <a href="https://travis-ci.org/njl07/rx-http-request.svg?branch=master">
+        <img src="https://travis-ci.org/njl07/rx-http-request.svg?branch=master" alt="build" />
+    </a>
+    <a href="https://coveralls.io/github/njl07/rx-http-request?branch=master">
+        <img src="https://coveralls.io/repos/github/njl07/rx-http-request/badge.svg?branch=master" alt="coveralls" />
+    </a>
+    <a href="https://david-dm.org/njl07/rx-http-request">
+        <img src="https://david-dm.org/njl07/rx-http-request.svg" alt="dependencies" />
+    </a>
+    <a href="https://david-dm.org/njl07/rx-http-request?type=dev">
+        <img src="https://david-dm.org/njl07/rx-http-request/dev-status.svg" alt="devDependencies" />
+    </a>
 </div>
 <div style="float:right;">
     <a href="https://www.typescriptlang.org/docs/tutorial.html">

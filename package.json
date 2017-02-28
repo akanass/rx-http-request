@@ -60,7 +60,7 @@
         "coveralls": "^2.11.16",
         "exorcist": "^0.4.0",
         "fs-extra": "^2.0.0",
-        "istanbul": "next",
+        "istanbul": "^1.1.0-alpha.1",
         "mocha": "^3.2.0",
         "mocha-typescript": "^1.0.22",
         "rimraf": "^2.6.1",
