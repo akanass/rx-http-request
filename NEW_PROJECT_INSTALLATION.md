@@ -7,13 +7,27 @@ After that, launch following commands.
 ### Dependencies
 
 ```sh
-npm install --save request rxjs
+$ npm install --save request rxjs
+```
+
+or
+
+```sh
+$ yarn cache clean
+$ yarn add request rxjs
 ```
 
 ### Development Dependencies
 
 ```sh
-npm install --save-dev del gulp gulp-jshint gulp-jsonminify gulp-load-plugins gulp-size gulp-uglify jshint jshint-stylish require-dir uglify-save-license gulp-babel coveralls babel-preset-es2015 mocha unit.js istanbul@next gulp-sourcemaps gulp-filter babelify browserify vinyl-buffer vinyl-source-stream
+npm install --save-dev @types/fs-extra @types/node @types/request browserify coveralls exorcist fs-extra istanbul@next mocha mocha-typescript rimraf ts-node tslint typescript unit.js
+```
+
+or
+
+```sh
+$ yarn cache clean
+$ yarn add @types/fs-extra @types/node @types/request browserify coveralls exorcist fs-extra istanbul@next mocha mocha-typescript rimraf ts-node tslint typescript unit.js --dev
 ```
 
 ## Conclusion

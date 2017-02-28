@@ -1,27 +1,31 @@
-# RX-HTTP-Request
+# Rx-Http-Request
 
-<div style="float:right;">
-    <a href="https://babeljs.io/docs/learn-es2015/">
-        <img src="http://image.slidesharecdn.com/4-es6metbabel-150513100342-lva1-app6891/95/es6-with-babeljs-1-638.jpg"
-             align="right" alt="ES2015 logo" width="50" height="50" />
-    </a>
-    <a href="https://github.com/Reactive-Extensions/RxJS">
-        <img src="http://reactivex.io/assets/Rx_Logo_S.png"
-             align="right" alt="ReactiveX logo" width="50" height="50"/>
-    </a>
-</div>
-
-[![NPM](https://nodei.co/npm/rx-http-request.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/rx-http-request/)
+<div style="overflow:hidden;margin-bottom:20px;">
+<div style="float:left;line-height:60px">
 
 [![Build Status](https://travis-ci.org/njl07/rx-http-request.svg?branch=master)](https://travis-ci.org/njl07/rx-http-request)
 [![Coverage Status](https://coveralls.io/repos/github/njl07/rx-http-request/badge.svg?branch=master)](https://coveralls.io/github/njl07/rx-http-request?branch=master)
 [![Dependencies](https://david-dm.org/njl07/rx-http-request.svg)](https://david-dm.org/njl07/rx-http-request)
 [![DevDependencies](https://david-dm.org/njl07/rx-http-request/dev-status.svg)](https://david-dm.org/njl07/rx-http-request?type=dev)
 
-The world-famous HTTP client [Request](https://github.com/request/request) now [RxJS](https://github.com/Reactive-Extensions/RxJS) compliant, wrote in full [ES2015](https://babeljs.io/docs/learn-es2015/) for client and server side.
+</div>
+<div style="float:right;">
+    <a href="https://www.typescriptlang.org/docs/tutorial.html">
+        <img src="https://cdn-images-1.medium.com/max/800/1*8lKzkDJVWuVbqumysxMRYw.png"
+             align="right" alt="Typescript logo" width="50" height="50"/>
+    </a>
+    <a href="http://reactivex.io/rxjs">
+        <img src="http://reactivex.io/assets/Rx_Logo_S.png"
+             align="right" alt="ReactiveX logo" width="50" height="50"/>
+    </a>
+</div>
+</div>
+
+The world-famous HTTP client [Request](https://github.com/request/request) now [RxJS](http://reactivex.io/rxjs) compliant, wrote in full [Typescript](https://www.typescriptlang.org/docs/tutorial.html) | [ES6](https://babeljs.io/docs/learn-es2015/) for client and server side.
 
 ## Table of contents
 
+* [Installation](#installation)
 * [Super simple to use](#super-simple-to-use)
 * [Browser compatibility](#browser-compatibility)
 * [API in Detail](#api-in-detail)
@@ -37,30 +41,38 @@ The world-famous HTTP client [Request](https://github.com/request/request) now [
     * [.patch(uri[,options])](#patchuri-options)
     * [.delete(uri[,options])](#deleteuri-options)
     * [.head(uri[,options])](#headuri-options)
+    * [.jar()](#jar)
+    * [.cookie(str)](#cookiestr)
 * [Contributing](#contributing)
 * [Change History](#change-history)
 * [License](#license)
 
+## Installation
+
+```sh
+$ npm install @akanass/rx-http-request
+```
+
 ## Super simple to use
 
-**RX-HTTP-Request** is designed to be the simplest way possible to make http calls.
+**Rx-Http-Request** is designed to be the simplest way possible to make http calls.
 
-It's fully `ES2015` wrotten so you can import it :
+It's fully `Typescript` | `ES6` wrotten so you can import it :
 
 ```javascript
-import {RxHttpRequest} from 'rx-http-request';
+import {RxHR} from "@akanass/rx-http-request";
 ```
 
 or use `CommonJS`:
 
 ```javascript
-const RxHttpRequest = require('rx-http-request').RxHttpRequest;
+const RxHR = require('@akanass/rx-http-request').RxHR;
 ```
 
 Now, it's easy to perform a `HTTP` request:
 
 ```javascript
-RxHttpRequest.get('http://www.google.fr').subscribe(
+RxHR.get('http://www.google.fr').subscribe(
     (data) => {
 
         if (data.response.statusCode === 200) {
@@ -73,16 +85,16 @@ RxHttpRequest.get('http://www.google.fr').subscribe(
 
 ## Browser compatibility
 
-**RX-HTTP-Request** can be used in your favorite browser to have all features in your own front application.
+**Rx-Http-Request** can be used in your favorite browser to have all features in your own front application.
 
 Just import `browser.js` script and enjoy:
 
 ```javascript
-<script src="node_modules/rx-http-request/browser.js" type="application/javascript"></script>
+<script src="node_modules/@akanass/rx-http-request/browser.js" type="application/javascript"></script>
 <script type="application/javascript">
-    const RxHttpRequest = rhr.RxHttpRequest;
+    const RxHR = rhr.RxHR;
     
-    RxHttpRequest.get('http://www.google.fr').subscribe(
+    RxHR.get('http://www.google.fr').subscribe(
         function(data){
     
             if (data.response.statusCode === 200) {
@@ -98,7 +110,7 @@ Just import `browser.js` script and enjoy:
 
 ## API in Detail
 
-**RX-HTTP-Request** uses [Request](https://github.com/request/request) **API** to perform calls and returns [RxJS.Observable](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md).
+**Rx-Http-Request** uses [Request](https://github.com/request/request) **API** to perform calls and returns [RxJS.Observable](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html).
 
 All **options** to pass to **API** **methods** can be found [here](https://github.com/request/request#requestoptions-callback).
 
@@ -112,9 +124,9 @@ All **methods** to execute on **response object** can be found [here](https://gi
 Returns the original [Request](https://github.com/request/request#requestoptions-callback) **API** to perform calls without `RxJS.Observable` response but with a **callback method**.
 
 ```javascript
-import {RxHttpRequest} from 'rx-http-request';
+import {RxHR} from '@akanass/rx-http-request';
 
-RxHttpRequest.request({uri: 'http://www.google.fr'}, (error, response, body) => {
+RxHR.request({uri: 'http://www.google.fr'}, (error, response, body) => {
 
     if (!error && response.statusCode == 200) {
         console.log(body); // Show the HTML for the Google homepage.
@@ -126,7 +138,7 @@ RxHttpRequest.request({uri: 'http://www.google.fr'}, (error, response, body) => 
 
 ### `.defaults(options)`
 
-This method **returns a wrapper** around the normal **RX-HTTP-Request API**  that defaults to whatever options you pass to it.
+This method **returns a wrapper** around the normal **Rx-Http-Request API**  that defaults to whatever options you pass to it.
 
 **Parameters:**
 > ***options*** *(required): Original [Request](https://github.com/request/request#requestoptions-callback) `options` object with default values foreach next requests*
@@ -134,15 +146,15 @@ This method **returns a wrapper** around the normal **RX-HTTP-Request API**  tha
 **Response:**
 > ***new*** *`RxHttpRequest` instance*
 
-**Note:** `RxHttpRequest.defaults()` **does not** modify the global API; instead, it returns a wrapper that has your default settings applied to it.
+**Note:** `RxHR.defaults()` **does not** modify the global API; instead, it returns a wrapper that has your default settings applied to it.
 
-**Note:** You can call `.defaults()` on the wrapper that is returned from `RxHttpRequest.defaults()` to add/override defaults that were previously defaulted.
+**Note:** You can call `.defaults()` on the wrapper that is returned from `RxHR.defaults()` to add/override defaults that were previously defaulted.
 
 For example:
  
 ```javascript
 // requests using baseRequest will set the 'x-token' header
-const baseRequest = RxHttpRequest.defaults({
+const baseRequest = RxHR.defaults({
     headers: {'x-token': 'my-token'}
 });
 
@@ -169,9 +181,9 @@ Performs a request with `get` http method.
 #### Crawl a webpage
 
 ```javascript
-import {RxHttpRequest} from 'rx-http-request';
+import {RxHR} from '@akanass/rx-http-request';
 
-RxHttpRequest.get('http://www.google.fr').subscribe(
+RxHR.get('http://www.google.fr').subscribe(
     (data) => {
 
         if (data.response.statusCode === 200) {
@@ -185,19 +197,19 @@ RxHttpRequest.get('http://www.google.fr').subscribe(
 #### GET something from a JSON REST API
      
 ```javascript
-import {RxHttpRequest} from 'rx-http-request';
+import {RxHR} from '@akanass/rx-http-request';
 
 const options = {
     qs: {
         access_token: 'xxxxx xxxxx' // -> uri + '?access_token=xxxxx%20xxxxx'
     },
     headers: {
-        'User-Agent': 'RX-HTTP-Request'
+        'User-Agent': 'Rx-Http-Request'
     },
     json: true // Automatically parses the JSON string in the response
 };
 
-RxHttpRequest.get('https://api.github.com/user/repos', options).subscribe(
+RxHR.get('https://api.github.com/user/repos', options).subscribe(
     (data) => {
 
         if (data.response.statusCode === 200) {
@@ -224,7 +236,7 @@ Performs a request with `post` http method.
 #### POST data to a JSON REST API
 
 ```javascript
-import {RxHttpRequest} from 'rx-http-request';
+import {RxHR} from '@akanass/rx-http-request';
 
 const options = {
     body: {
@@ -233,7 +245,7 @@ const options = {
     json: true // Automatically stringifies the body to JSON
 };
 
-RxHttpRequest.post('http://posttestserver.com/posts', options).subscribe(
+RxHR.post('http://posttestserver.com/posts', options).subscribe(
     (data) => {
 
         if (data.response.statusCode === 201) {
@@ -247,7 +259,7 @@ RxHttpRequest.post('http://posttestserver.com/posts', options).subscribe(
 #### POST like HTML forms do
 
 ```javascript
-import {RxHttpRequest} from 'rx-http-request';
+import {RxHR} from '@akanass/rx-http-request';
 
 const options = {
     form: {
@@ -258,7 +270,7 @@ const options = {
     }
 };
 
-RxHttpRequest.post('http://posttestserver.com/posts', options).subscribe(
+RxHR.post('http://posttestserver.com/posts', options).subscribe(
     (data) => {
 
         if (data.response.statusCode === 201) {
@@ -283,9 +295,9 @@ Performs a request with `put` http method.
 > *[RxJS.Observable](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md) instance*
 
 ```javascript
-import {RxHttpRequest} from 'rx-http-request';
+import {RxHR} from '@akanass/rx-http-request';
 
-RxHttpRequest.put(uri).subscribe(...);
+RxHR.put(uri).subscribe(...);
 ```
 
 [Back to top](#table-of-contents)
@@ -302,9 +314,9 @@ Performs a request with `patch` http method.
 > *[RxJS.Observable](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md) instance*
 
 ```javascript
-import {RxHttpRequest} from 'rx-http-request';
+import {RxHR} from '@akanass/rx-http-request';
 
-RxHttpRequest.patch(uri).subscribe(...);
+RxHR.patch(uri).subscribe(...);
 ```
 
 [Back to top](#table-of-contents)
@@ -321,9 +333,9 @@ Performs a request with `delete` http method.
 > *[RxJS.Observable](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md) instance*
 
 ```javascript
-import {RxHttpRequest} from 'rx-http-request';
+import {RxHR} from '@akanass/rx-http-request';
 
-RxHttpRequest.delete(uri).subscribe(...);
+RxHR.delete(uri).subscribe(...);
 ```
 
 [Back to top](#table-of-contents)
@@ -340,12 +352,43 @@ RxHttpRequest.delete(uri).subscribe(...);
 Performs a request with `head` http method.
 
 ```javascript
-import {RxHttpRequest} from 'rx-http-request';
+import {RxHR} from '@akanass/rx-http-request';
 
-RxHttpRequest.head(uri).subscribe(...);
+RxHR.head(uri).subscribe(...);
 ```
 
 [Back to top](#table-of-contents)
+
+### `.jar()`
+
+**Response:**
+> *[RxJS.Observable](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md) instance*
+
+Creates a new `RxCookieJar` instance
+
+```javascript
+import {RxHR} from '@akanass/rx-http-request';
+
+RxHR.jar().subscribe(...);
+```
+
+[Back to top](#table-of-contents)
+
+### `.cookie(str)`
+
+**Parameters:**
+> - ***str*** *(required): The `string` representation of the cookie*
+
+**Response:**
+> *[RxJS.Observable](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md) instance*
+
+Creates a new cookie
+ 
+```javascript
+import {RxHR} from '@akanass/rx-http-request';
+
+RxHR.cookie('key1=value1').subscribe(...);
+```
 
 ## Contributing
 
@@ -353,16 +396,21 @@ To set up your development environment:
 
 1. clone the repo to your workspace,
 2. in the shell `cd` to the main folder,
-3. hit `npm install`,
-4. hit `npm install gulp -g` if you haven't installed gulp globally yet, and
-5. run `gulp`. (Or run node ./node_modules/.bin/gulp if you don't want to install gulp globally.)
-
-`gulp` watches all source files and if you save some changes it will lint the code and execute all tests. The test coverage report can be viewed from `./coverage/lcov-report/index.html`.
+3. hit `npm or yarn install`,
+4. run `npm or yarn run test`.
+    * It will lint the code and execute all tests. 
+    * The test coverage report can be viewed from `./coverage/lcov-report/index.html`.
 
 [Back to top](#table-of-contents)
 
 ## Change History
 
+* v2.0.0 (2017-02-28)
+    * New package version for `RxJS` and `Request`
+    * Don't import all of `RxJS`, only `Observable`
+    * Rewritten all **library and test files in `Typescript`**
+    * Add `typings` support
+    * Add **scope** to library and move to **`@akanass/rx-http-request`**
 * v1.2.0 (2016-09-29)
     * New package version for `RxJS` and `Request`
     * New `ES6` features
@@ -371,12 +419,12 @@ To set up your development environment:
 * v1.1.0 (2016-03-28)
     * Browserify to have browser compatibility
 * v1.0.0 (2016-03-27)
-    * Carefully rewritten from scratch to make RX-HTTP-Request a drop-in replacement for Request
+    * Carefully rewritten from scratch to make Rx-Http-Request a drop-in replacement for Request
     
 [Back to top](#table-of-contents)
 
 ## License
 
-Copyright (c) 2016 **Nicolas Jessel** Licensed under the [MIT license](https://github.com/njl07/rx-http-request/tree/master/LICENSE.md).
+Copyright (c) 2017 **Nicolas Jessel** Licensed under the [MIT license](https://github.com/njl07/rx-http-request/tree/master/LICENSE.md).
 
 [Back to top](#table-of-contents)

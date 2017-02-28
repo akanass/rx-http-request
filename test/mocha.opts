@@ -2,6 +2,6 @@
 --report lcovonly
 --reporter spec
 --recursive
---compilers js:babel-core/register
+--compilers ts:ts-node/register
 --throw-deprecation
 --colors

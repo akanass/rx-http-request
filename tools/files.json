@@ -1,0 +1,10 @@
+[
+    {"name":"README.md"},
+    {"name":"LICENSE.md"},
+    {"name":"package.json"},
+    {"name":"src"},
+    {"name":"index.js", "remove":true},
+    {"name":"index.js.map", "remove":true},
+    {"name":"index.d.ts", "remove":true},
+    {"name":"lib", "remove":true}
+]
