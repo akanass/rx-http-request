@@ -1,5 +1,5 @@
 pretest:
-	@node ./node_modules/.bin/rimraf ./tmp && ./node_modules/.bin/tslint -p ./tsconfig.json --type-check "./src/**/*.ts" "./test/**/*.ts"
+	@node ./node_modules/.bin/tslint -p ./tsconfig.json --type-check "./src/**/*.ts" "./test/**/*.ts"
 test:
 	@node ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha ./test
 test-on-travis:
