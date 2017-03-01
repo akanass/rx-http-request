@@ -3,7 +3,7 @@ pretest:
 test:
 	@node ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha ./test
 test-on-travis:
-	@node ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha ./test && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls
+	@node ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha ./test
 tsc:
 	@node ./node_modules/.bin/tsc -p ./tsconfig.build.json
 clean:
