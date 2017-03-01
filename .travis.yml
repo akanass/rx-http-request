@@ -4,3 +4,5 @@ node_js:
 script:
   - npm run-script pretest
   - npm run-script test-on-travis
+after_script:
+  - cat ./coverage/lcov.info | coveralls
