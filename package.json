@@ -7,9 +7,9 @@
     "types": "index.d.ts",
     "private": false,
     "scripts": {
-        "test": "make test",
         "pretest": "make pretest",
-        "test-on-travis": "make test-on-travis",
+        "test": "make test",
+        "coveralls": "make coveralls",
         "clean": "make clean",
         "tsc": "make tsc",
         "packaging": "make packaging",
