@@ -27,7 +27,6 @@
 </div>
 </div>
 
-
 The world-famous HTTP client [Request](https://github.com/request/request) now [RxJS](http://reactivex.io/rxjs) compliant, wrote in full [Typescript](https://www.typescriptlang.org/docs/tutorial.html) | [ES6](https://babeljs.io/docs/learn-es2015/) for client and server side.
 
 ## Table of contents
