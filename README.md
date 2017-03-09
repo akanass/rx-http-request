@@ -415,6 +415,8 @@ To set up your development environment:
 
 ## Change History
 
+* v2.1.0 (2017-03-09)
+    * Upgrade `Request` version to `v2.80.0`
 * v2.0.0 (2017-02-28)
     * New package version for `RxJS` and `Request`
     * Don't import all of `RxJS`, only `Observable`

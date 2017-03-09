@@ -1,6 +1,6 @@
 {
     "name": "@akanass/rx-http-request",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "description": "The world-famous HTTP client Request now RxJS compliant, wrote in Typescript | ES6 for client and server side.",
     "main": "index.js",
     "browser": "browser.js",
@@ -49,15 +49,15 @@
     },
     "homepage": "https://github.com/njl07/rx-http-request#readme",
     "dependencies": {
-        "rxjs": "^5.2.0",
-        "request": "^2.79.0"
+        "request": "^2.80.0",
+        "rxjs": "^5.2.0"
     },
     "devDependencies": {
         "@types/fs-extra": "^0.0.37",
-        "@types/node": "^7.0.5",
-        "@types/request": "^0.0.40",
+        "@types/node": "^7.0.7",
+        "@types/request": "^0.0.41",
         "browserify": "^14.1.0",
-        "coveralls": "^2.11.16",
+        "coveralls": "^2.12.0",
         "exorcist": "^0.4.0",
         "fs-extra": "^2.0.0",
         "istanbul": "^1.1.0-alpha.1",
