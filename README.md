@@ -415,6 +415,9 @@ To set up your development environment:
 
 ## Change History
 
+* v2.1.1 (2017-03-23)
+    * Upgrade all packages' versions
+    * [Fix `request typings` installation](https://github.com/njl07/rx-http-request/issues/8)
 * v2.1.0 (2017-03-09)
     * Upgrade `Request` version to `v2.80.0`
 * v2.0.0 (2017-02-28)
