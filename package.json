@@ -50,6 +50,7 @@
     "homepage": "https://github.com/njl07/rx-http-request#readme",
     "dependencies": {
         "request": "^2.80.0",
+	"@types/request": "0.0.41",
         "rxjs": "^5.2.0"
     },
     "devDependencies": {
