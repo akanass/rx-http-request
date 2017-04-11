@@ -1,7 +1,7 @@
-import {suite, test} from 'mocha-typescript';
+import { suite, test } from 'mocha-typescript';
 import * as unit from 'unit.js';
 import * as Rx from 'rxjs';
-import {RxHR, RxCookieJar} from '../../src';
+import { RxHR, RxCookieJar } from '../../src';
 
 // native javascript's objects typings
 declare const TypeError: any;

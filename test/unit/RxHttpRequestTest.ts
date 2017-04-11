@@ -1,9 +1,9 @@
-import {suite, test} from 'mocha-typescript';
+import { suite, test } from 'mocha-typescript';
 import * as unit from 'unit.js';
 import * as Rx from 'rxjs';
 import * as request from 'request';
 import Cookie = request.Cookie;
-import {RxHR, RxHttpRequest, RxHttpRequestResponse, RxCookieJar} from '../../src';
+import { RxHR, RxHttpRequest, RxHttpRequestResponse } from '../../src';
 
 // native javascript's objects typings
 declare const TypeError: any;
@@ -69,15 +69,15 @@ class RxHttpRequestTest {
     }
 
     /**
-     * Test if call() method calls request API
+     * Test if _call() method calls request API
      */
-    @test('- `call` method must call `request` API method')
+    @test('- `_call` method must call `request` API method')
     testCallMethod() {
         // mock request API
         const method = 'get';
         this._rxHRMockRequest.expects(method).once().callsArg(2);
 
-        unit.object(this._rxHR.call(method, this._uri).subscribe())
+        unit.object(this._rxHR['_call'](method, this._uri).subscribe())
             .when(_ => {
                 this._rxHRMockRequest.verify();
                 this._rxHRMockRequest.restore();
@@ -93,7 +93,7 @@ class RxHttpRequestTest {
         const method = 'get';
         this._rxHRMockRequest.expects(method).once().callsArg(2);
 
-        unit.object(this._rxHR.call(method, this._uri).subscribe((data: RxHttpRequestResponse) => {
+        unit.object(this._rxHR['_call'](method, this._uri).subscribe((data: RxHttpRequestResponse) => {
             unit.object(data)
                 .hasOwnProperty('response')
                 .hasOwnProperty('body')
@@ -106,7 +106,7 @@ class RxHttpRequestTest {
      */
     @test('- `Observable` rejects response if bad `method` parameter')
     testObservableError() {
-        this._rxHR.call('unknown_method', this._uri).subscribe(null, err => unit.error(err));
+        this._rxHR['_call']('unknown_method', this._uri).subscribe(null, err => unit.error(err));
     }
 
     /**

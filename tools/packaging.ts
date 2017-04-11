@@ -1,5 +1,5 @@
 // import libraries
-import {Observable} from "rxjs/Observable";
+import { Observable } from "rxjs/Observable";
 import "rxjs/add/observable/forkJoin";
 import "rxjs/add/operator/mergeMap";
 import * as fs from 'fs-extra';
@@ -72,7 +72,7 @@ class Packaging {
      *
      * @private
      */
-    private _remove(file: string, remove?:boolean): Observable<any> {
+    private _remove(file: string, remove?: boolean): Observable<any> {
         // remove original files
         return <Observable<any>> Observable.create((observer) => {
             if (remove) {

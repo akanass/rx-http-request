@@ -5,7 +5,7 @@ import * as url from 'url';
 import Cookie = request.Cookie;
 import CookieJar = request.CookieJar;
 
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 
 // native javascript's objects typings
 declare const Object: any;
@@ -93,10 +93,15 @@ export class RxCookieJar {
     private _checkRequestParam(cookieJar: CookieJar) {
         // check existing function in object
         if (!cookieJar ||
-            Object.prototype.toString.call( cookieJar.setCookie ) !== '[object Function]' ||
-            Object.prototype.toString.call( cookieJar.getCookieString ) !== '[object Function]' ||
-            Object.prototype.toString.call( cookieJar.getCookies ) !== '[object Function]') {
+            Object.prototype.toString.call(cookieJar.setCookie) !== '[object Function]' ||
+            Object.prototype.toString.call(cookieJar.getCookieString) !== '[object Function]' ||
+            Object.prototype.toString.call(cookieJar.getCookies) !== '[object Function]') {
             throw new TypeError('Parameter must be a valid `CookieJar` object');
         }
     }
 }
+
+/**
+ * Export all initial elements
+ */
+export { CookieJar, Cookie, url };
