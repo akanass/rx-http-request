@@ -50,14 +50,14 @@
     "homepage": "https://github.com/njl07/rx-http-request#readme",
     "dependencies": {
         "request": "^2.81.0",
-        "@types/request": "^0.0.41",
-        "rxjs": "^5.2.0"
+        "rxjs": "^5.3.0",
+        "@types/request": "^0.0.42",
+        "@types/node": "^7.0.12"
     },
     "devDependencies": {
         "@types/fs-extra": "^2.0.0",
-        "@types/node": "^7.0.10",
-        "browserify": "^14.1.0",
-        "coveralls": "^2.12.0",
+        "browserify": "^14.3.0",
+        "coveralls": "^2.13.0",
         "exorcist": "^0.4.0",
         "fs-extra": "^2.1.2",
         "istanbul": "^1.1.0-alpha.1",
@@ -65,8 +65,8 @@
         "mocha-typescript": "^1.0.23",
         "rimraf": "^2.6.1",
         "ts-node": "^3.0.2",
-        "tslint": "^4.5.1",
-        "typescript": "^2.2.1",
+        "tslint": "^5.1.0",
+        "typescript": "^2.2.2",
         "unit.js": "^2.0.0"
     },
     "engines": {
