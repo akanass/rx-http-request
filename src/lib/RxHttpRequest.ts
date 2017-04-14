@@ -1,5 +1,6 @@
 // import libraries
 import * as request from 'request';
+import { Buffer } from 'buffer';
 
 import RequestAPI = request.RequestAPI;
 import Request = request.Request;
@@ -83,6 +84,32 @@ export class RxHttpRequest {
     get(uri: string, options?: CoreOptions): Observable<RxHttpRequestResponse> {
         return <Observable<RxHttpRequestResponse>> this._call.apply(this, [].concat('get', <string> uri,
             <CoreOptions> Object.assign({}, options || {})));
+    }
+
+    /**
+     * Function to do a GET HTTP request and to return a buffer
+     *
+     * @param uri
+     * @param options
+     *
+     * @return {Observable<RxHttpRequestResponse>}
+     */
+    getBuffer(uri: string, options?: CoreOptions): Observable<RxHttpRequestResponse> {
+        return <Observable<RxHttpRequestResponse>> Observable.create((observer) => {
+            this._request.get(<string> uri, <CoreOptions> Object.assign({}, options || {}))
+                .on('response', (response: RequestResponse) => {
+                    let res: Buffer;
+                    response.on('data', (data: Buffer) => res = res ? Buffer.concat([].concat(res, data)) : data);
+                    response.on('end', _ => {
+                        observer.next(<RxHttpRequestResponse> Object.assign({}, {
+                            response: <RequestResponse> response,
+                            body: <Buffer> res
+                        }));
+                        observer.complete();
+                    });
+                })
+                .on('error', error => observer.error(error));
+        });
     }
 
     /**
@@ -252,4 +279,4 @@ export interface RxHttpRequestResponse {
 /**
  * Export all initial elements
  */
-export { RequestAPI, Request, CoreOptions, RequiredUriUrl, RequestResponse, RequestCallback };
+export { RequestAPI, Request, CoreOptions, RequiredUriUrl, RequestResponse };
