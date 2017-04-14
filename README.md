@@ -40,6 +40,8 @@ The world-famous HTTP client [Request](https://github.com/request/request) now [
     * [.get(uri[,options])](#geturi-options)
         * [Crawl a webpage](#crawl-a-webpage)
         * [GET something from a JSON REST API](#get-something-from-a-json-rest-api)
+    * [.getBuffer(uri[,options])](#getbufferuri-options)
+        * [GET a buffer image](#get-a-buffer-image)
     * [.post(uri[,options])](#posturi-options)
         * [POST data to a JSON REST API](#post-data-to-a-json-rest-api)
         * [POST like HTML forms do](#post-like-html-forms-do)
@@ -220,6 +222,36 @@ RxHR.get('https://api.github.com/user/repos', options).subscribe(
 
         if (data.response.statusCode === 200) {
             console.log(data.body); // Show the JSON response object.
+        }
+    },
+    (err) => console.error(err) // Show error in console
+);
+```
+
+[Back to top](#table-of-contents)
+
+### `.getBuffer(uri[, options])`
+
+Performs a request with `get` http method and returns a **buffer** in response body. Very useful to crawl data from a **stream**.
+
+**Parameters:**
+> - ***uri*** *(required): The `uri` where request will be performed*
+> - ***options*** *(optional): Original [Request](https://github.com/request/request#requestoptions-callback) `options` object*
+
+**Response:**
+> *[RxJS.Observable](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md) instance*
+
+#### GET a buffer image
+
+```javascript
+import {RxHR} from '@akanass/rx-http-request';
+
+RxHR.getBuffer('https://portalstoragewuprod2.azureedge.net/vision/Analysis/1-1.jpg').subscribe(
+    (data) => {
+
+        if (data.response.statusCode === 200) {
+            console.log(data.response.headers['content-type']); // Show image content-type.
+            console.log(data.body); // Show image buffer array.
         }
     },
     (err) => console.error(err) // Show error in console
@@ -415,6 +447,11 @@ To set up your development environment:
 
 ## Change History
 
+* v2.2.0 (2017-04-14)
+    * Upgrade all packages' versions
+    * Fix tests
+    * Add new method to get data with buffer response
+    * Export all initial elements from request to have them in library
 * v2.1.1 (2017-03-23)
     * Upgrade all packages' versions
     * [Fix `request typings` installation](https://github.com/njl07/rx-http-request/issues/8)
