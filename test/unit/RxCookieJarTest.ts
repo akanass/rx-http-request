@@ -45,7 +45,7 @@ class RxCookieJarTest {
      * Test setCookie() method calls CookieJar.setCookie() method
      */
     @test('- `setCookie` method must call `CookieJar.setCookie` method')
-    testSetCookieMethod() {
+    testSetCookieMethod(done) {
         // mock CookieJar API
         this._rxCJMockCookieJar.expects('setCookie').once();
 
@@ -53,6 +53,7 @@ class RxCookieJarTest {
             .when(_ => {
                 this._rxCJMockCookieJar.verify();
                 this._rxCJMockCookieJar.restore();
+                done();
             });
     }
 
@@ -60,20 +61,17 @@ class RxCookieJarTest {
      * Test setCookie() method returns an Observable
      */
     @test('- `setCookie` method must return an `Observable`')
-    testSetCookieMethodReturnType() {
-        // mock CookieJar API
-        this._rxCJMockCookieJar.expects('setCookie').once();
-
+    testSetCookieMethodReturnType(done) {
         unit.object(this._rxCJ.setCookie(null, null))
             .isInstanceOf(Rx.Observable)
-            .when(_ => this._rxCJMockCookieJar.restore());
+            .when(_ => done());
     }
 
     /**
      * Test getCookieString() method calls CookieJar.getCookieString() method
      */
     @test('- `getCookieString` method must call `CookieJar.getCookieString` method')
-    testGetCookieStringMethod() {
+    testGetCookieStringMethod(done) {
         // mock CookieJar API
         this._rxCJMockCookieJar.expects('getCookieString').once();
 
@@ -81,6 +79,7 @@ class RxCookieJarTest {
             .when(_ => {
                 this._rxCJMockCookieJar.verify();
                 this._rxCJMockCookieJar.restore();
+                done();
             });
     }
 
@@ -88,20 +87,17 @@ class RxCookieJarTest {
      * Test getCookieString() method returns an Observable
      */
     @test('- `getCookieString` method must return an `Observable`')
-    testGetCookieStringMethodReturnType() {
-        // mock CookieJar API
-        this._rxCJMockCookieJar.expects('getCookieString').once();
-
+    testGetCookieStringMethodReturnType(done) {
         unit.object(this._rxCJ.getCookieString(null))
             .isInstanceOf(Rx.Observable)
-            .when(_ => this._rxCJMockCookieJar.restore());
+            .when(_ => done());
     }
 
     /**
      * Test getCookies() method calls CookieJar.getCookies() method
      */
     @test('- `getCookieString` method must call `CookieJar.getCookieString` method')
-    testGetCookiesMethod() {
+    testGetCookiesMethod(done) {
         // mock CookieJar API
         this._rxCJMockCookieJar.expects('getCookies').once();
 
@@ -109,6 +105,7 @@ class RxCookieJarTest {
             .when(_ => {
                 this._rxCJMockCookieJar.verify();
                 this._rxCJMockCookieJar.restore();
+                done();
             });
     }
 
@@ -116,13 +113,10 @@ class RxCookieJarTest {
      * Test getCookieString() method returns an Observable
      */
     @test('- `getCookies` method must return an `Observable`')
-    testGetCookiesMethodReturnType() {
-        // mock CookieJar API
-        this._rxCJMockCookieJar.expects('getCookies').once();
-
+    testGetCookiesMethodReturnType(done) {
         unit.object(this._rxCJ.getCookies(null))
             .isInstanceOf(Rx.Observable)
-            .when(_ => this._rxCJMockCookieJar.restore());
+            .when(_ => done());
     }
 
 }

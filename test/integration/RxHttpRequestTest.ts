@@ -1,10 +1,12 @@
 import {suite, test} from 'mocha-typescript';
 import * as unit from 'unit.js';
-import {RxHR, RxHttpRequest, RxCookieJar} from '../../src';
+import {RxHR, RxHttpRequest, RxCookieJar, RxHttpRequestResponse} from '../../src';
 
 @suite('- Integration RxHttpRequestTest file')
 class RxHttpRequestTest {
     // private property to store test uri
+    private _uri: string;
+    // private property to store fake test uri
     private _fakeUri: string;
     // private property to store real instance
     private _rxHR: RxHttpRequest;
@@ -14,6 +16,7 @@ class RxHttpRequestTest {
      */
     constructor() {
         this._fakeUri = 'http://fake.uri';
+        this._uri = 'https://www.google.fr';
     }
 
     /**
@@ -34,25 +37,44 @@ class RxHttpRequestTest {
      * Test response error in observable
      */
     @test('- `Observable` rejects response if bad `method` parameter')
-    testAPi() {
-       this._rxHR.get(this._fakeUri).subscribe(null, err => unit.error(err));
+    testAPi(done) {
+       this._rxHR.get(this._fakeUri).subscribe(null, err => unit.error(err).when(_ => done()));
     }
 
     /**
      * Test jar() method returns an Observable with RxCookieJar data
      */
     @test('- `jar` method must return an `Observable` with `RxCookieJar` data')
-    testJarMethodReturnObservableType() {
-        unit.object(this._rxHR.jar().subscribe(data => unit.object(data).isInstanceOf(RxCookieJar)));
+    testJarMethodReturnObservableType(done) {
+        this._rxHR.jar().subscribe(data => unit.object(data).isInstanceOf(RxCookieJar).when(_ => done()));
     }
 
     /**
      * Test cookie() method returns a RxCookieJar
      */
     @test('- `cookie` method must return an `Observable` with `Cookie` data')
-    testCookieMethodReturnObservableType() {
-        unit.object(this._rxHR.cookie('key1=value1').subscribe((data) => {
-            unit.object(data);
+    testCookieMethodReturnObservableType(done) {
+        this._rxHR.cookie('key1=value1').subscribe((data) => unit.object(data).when(_ => done()));
+    }
+
+    /**
+     * Test response data in observable
+     */
+    @test('- `getBuffer` method needs to have an `Observable` response must be type of `RxHttpRequestResponse`')
+    testGetBufferObservableResponse(done) {
+        unit.object(this._rxHR.getBuffer(this._uri).subscribe((data: RxHttpRequestResponse) => {
+            unit.object(data)
+                .hasOwnProperty('response')
+                .hasOwnProperty('body')
+                .when(_ => done());
         }));
+    }
+
+    /**
+     * Test response error in observable
+     */
+    @test('- `getBuffer` method with `Observable` rejects response if bad `method` parameter')
+    testGetBufferError(done) {
+        this._rxHR.getBuffer(this._fakeUri).subscribe(null, err => unit.error(err).when(_ => done()));
     }
 }

@@ -72,7 +72,7 @@ class RxHttpRequestTest {
      * Test if _call() method calls request API
      */
     @test('- `_call` method must call `request` API method')
-    testCallMethod() {
+    testCallMethod(done) {
         // mock request API
         const method = 'get';
         this._rxHRMockRequest.expects(method).once().callsArg(2);
@@ -81,6 +81,7 @@ class RxHttpRequestTest {
             .when(_ => {
                 this._rxHRMockRequest.verify();
                 this._rxHRMockRequest.restore();
+                done();
             });
     }
 
@@ -88,7 +89,7 @@ class RxHttpRequestTest {
      * Test response data in observable
      */
     @test('- `Observable` response must be type of `RxHttpRequestResponse`')
-    testObservableResponse() {
+    testObservableResponse(done) {
         // mock request API
         const method = 'get';
         this._rxHRMockRequest.expects(method).once().callsArg(2);
@@ -97,7 +98,11 @@ class RxHttpRequestTest {
             unit.object(data)
                 .hasOwnProperty('response')
                 .hasOwnProperty('body')
-                .when(_ => this._rxHRMockRequest.restore());
+                .when(_ => {
+                    this._rxHRMockRequest.verify();
+                    this._rxHRMockRequest.restore();
+                    done();
+                });
         }));
     }
 
@@ -113,103 +118,89 @@ class RxHttpRequestTest {
      * Test get() method returns an Observable
      */
     @test('- `get` method must return an `Observable`')
-    testGetMethod() {
-        // mock request API
-        this._rxHRMockRequest.expects('get').once().callsArg(2);
-
+    testGetMethod(done) {
         unit.object(this._rxHR.get(this._uri))
             .isInstanceOf(Rx.Observable)
-            .when(_ => this._rxHRMockRequest.restore());
+            .when(_ => done());
+    }
+
+    /**
+     * Test getBuffer() method returns an Observable
+     */
+    @test('- `getBuffer` method must return an `Observable`')
+    testGetBufferMethod(done) {
+        unit.object(this._rxHR.getBuffer(this._uri))
+            .isInstanceOf(Rx.Observable)
+            .when(_ => done());
     }
 
     /**
      * Test post() method returns an Observable
      */
     @test('- `post` method must return an `Observable`')
-    testPostMethod() {
-        // mock request API
-        this._rxHRMockRequest.expects('post').once().callsArg(2);
-
+    testPostMethod(done) {
         unit.object(this._rxHR.post(this._uri))
             .isInstanceOf(Rx.Observable)
-            .when(_ => this._rxHRMockRequest.restore());
+            .when(_ => done());
     }
 
     /**
      * Test put() method returns an Observable
      */
     @test('- `put` method must return an `Observable`')
-    testPutMethod() {
-        // mock request API
-        this._rxHRMockRequest.expects('put').once().callsArg(2);
-
+    testPutMethod(done) {
         unit.object(this._rxHR.put(this._uri))
             .isInstanceOf(Rx.Observable)
-            .when(_ => this._rxHRMockRequest.restore());
+            .when(_ => done());
     }
 
     /**
      * Test patch() method returns an Observable
      */
     @test('- `patch` method must return an `Observable`')
-    testPatchMethod() {
-        // mock request API
-        this._rxHRMockRequest.expects('patch').once().callsArg(2);
-
+    testPatchMethod(done) {
         unit.object(this._rxHR.patch(this._uri))
             .isInstanceOf(Rx.Observable)
-            .when(_ => this._rxHRMockRequest.restore());
+            .when(_ => done());
     }
 
     /**
      * Test delete() method returns an Observable
      */
     @test('- `delete` method must return an `Observable`')
-    testDeleteMethod() {
-        // mock request API
-        this._rxHRMockRequest.expects('del').once().callsArg(2);
-
+    testDeleteMethod(done) {
         unit.object(this._rxHR.delete(this._uri))
             .isInstanceOf(Rx.Observable)
-            .when(_ => this._rxHRMockRequest.restore());
+            .when(_ => done());
     }
 
     /**
      * Test head() method returns an Observable
      */
     @test('- `head` method must return an `Observable`')
-    testHeadMethod() {
-        // mock request API
-        this._rxHRMockRequest.expects('head').once().callsArg(2);
-
+    testHeadMethod(done) {
         unit.object(this._rxHR.head(this._uri))
             .isInstanceOf(Rx.Observable)
-            .when(_ => this._rxHRMockRequest.restore());
+            .when(_ => done());
     }
 
     /**
      * Test jar() method returns an Observable
      */
     @test('- `jar` method must return an `Observable`')
-    testJarMethod() {
-        // mock request API
-        this._rxHRMockRequest.expects('jar').once();
-
+    testJarMethod(done) {
         unit.object(this._rxHR.jar())
             .isInstanceOf(Rx.Observable)
-            .when(_ => this._rxHRMockRequest.restore());
+            .when(_ => done());
     }
 
     /**
      * Test cookie() method returns an Observable
      */
     @test('- `cookie` method must return an `Observable`')
-    testCookieMethod() {
-        // mock request API
-        this._rxHRMockRequest.expects('cookie').once();
-
+    testCookieMethod(done) {
         unit.object(this._rxHR.cookie(null))
             .isInstanceOf(Rx.Observable)
-            .when(_ => this._rxHRMockRequest.restore());
+            .when(_ => done());
     }
 }
