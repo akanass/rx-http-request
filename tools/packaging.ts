@@ -84,8 +84,7 @@ class Packaging {
                     observer.next();
                     observer.complete();
                 });
-            }
-            else {
+            } else {
                 observer.next();
                 observer.complete();
             }
