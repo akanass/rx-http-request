@@ -447,6 +447,9 @@ To set up your development environment:
 
 ## Change History
 
+* v2.2.1 (2017-05-02)
+    * Upgrade all packages' versions
+    * Fix error handler in `getBuffer` method if no `uri` provided
 * v2.2.0 (2017-04-14)
     * Upgrade all packages' versions
     * Fix tests
