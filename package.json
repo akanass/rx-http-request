@@ -1,6 +1,6 @@
 {
     "name": "@akanass/rx-http-request",
-    "version": "2.2.0",
+    "version": "2.2.1",
     "description": "The world-famous HTTP client Request now RxJS compliant, wrote in Typescript | ES6 for client and server side.",
     "main": "index.js",
     "browser": "browser.js",
