@@ -96,19 +96,23 @@ export class RxHttpRequest {
      */
     getBuffer(uri: string, options?: CoreOptions): Observable<RxHttpRequestResponse> {
         return <Observable<RxHttpRequestResponse>> Observable.create((observer) => {
-            this._request.get(<string> uri, <CoreOptions> Object.assign({}, options || {}))
-                .on('response', (response: RequestResponse) => {
-                    let res: Buffer;
-                    response.on('data', (data: Buffer) => res = res ? Buffer.concat([].concat(res, data)) : data);
-                    response.on('end', _ => {
-                        observer.next(<RxHttpRequestResponse> Object.assign({}, {
-                            response: <RequestResponse> response,
-                            body: <Buffer> res
-                        }));
-                        observer.complete();
-                    });
-                })
-                .on('error', error => observer.error(error));
+            try {
+                this._request.get(<string> uri, <CoreOptions> Object.assign({}, options || {}))
+                    .on('response', (response: RequestResponse) => {
+                        let res: Buffer;
+                        response.on('data', (data: Buffer) => res = res ? Buffer.concat([].concat(res, data)) : data);
+                        response.on('end', _ => {
+                            observer.next(<RxHttpRequestResponse> Object.assign({}, {
+                                response: <RequestResponse> response,
+                                body: <Buffer> res
+                            }));
+                            observer.complete();
+                        });
+                    })
+                    .on('error', error => observer.error(error));
+            } catch (error) {
+                observer.error(error);
+            }
         });
     }
 

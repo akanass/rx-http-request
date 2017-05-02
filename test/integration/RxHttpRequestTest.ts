@@ -77,4 +77,12 @@ class RxHttpRequestTest {
     testGetBufferError(done) {
         this._rxHR.getBuffer(this._fakeUri).subscribe(null, err => unit.error(err).when(_ => done()));
     }
+
+    /**
+     * Test request error in observable
+     */
+    @test('- `getBuffer` method with `Observable` rejects if bad `method` parameter')
+    testGetBufferErrorParams(done) {
+        this._rxHR.getBuffer(null).subscribe(null, err => unit.error(err).when(_ => done()));
+    }
 }
