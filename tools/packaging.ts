@@ -10,6 +10,7 @@ import * as fs from 'fs-extra';
 interface FileObject {
     name: string;
     remove?: boolean;
+    externals?: boolean;
 }
 
 /**
@@ -40,10 +41,11 @@ class Packaging {
      * Function to copy one file
      *
      * @param file {string}
+     * @param externals {boolean}
      *
      * @return {Observable<R>}
      */
-    private _copy(file: string): Observable<any> {
+    private _copy(file: string, externals?: boolean): Observable<any> {
         // copy package.json
         if (file.indexOf('package.json') !== -1) {
             return this._copyAndCleanupPackageJson(file);
@@ -51,13 +53,27 @@ class Packaging {
 
         // copy other files
         return <Observable<any>> Observable.create((observer) => {
-            fs.copy(`${this._srcPath}${file}`, `${this._destPath}${file}`, (error) => {
+            let fileDest = file;
+            if (externals && file.indexOf('src/') !== -1) {
+                fileDest = file.split('src/').pop();
+            }
+            fs.stat(`${this._srcPath}${file}`, (error, stats) => {
                 if (error) {
-                    return observer.error(error);
+                    console.error('doesn\'t exist on copy =>', error.message);
                 }
+                if (stats && (stats.isFile() || stats.isDirectory())) {
+                    fs.copy(`${this._srcPath}${file}`, `${this._destPath}${fileDest}`, (err) => {
+                        if (err) {
+                            console.error('copy failed =>', err.message);
+                        }
 
-                observer.next();
-                observer.complete();
+                        observer.next();
+                        observer.complete();
+                    });
+                } else {
+                    observer.next();
+                    observer.complete();
+                }
             });
         });
     }
@@ -76,13 +92,24 @@ class Packaging {
         // remove original files
         return <Observable<any>> Observable.create((observer) => {
             if (remove) {
-                fs.remove(`${this._srcPath}${file}`, (error) => {
+                fs.stat(`${this._srcPath}${file}`, (error, stats) => {
                     if (error) {
-                        return observer.error(error);
+                        console.error('doesn\'t exist on remove =>', error.message);
                     }
 
-                    observer.next();
-                    observer.complete();
+                    if (stats && (stats.isFile() || stats.isDirectory())) {
+                        fs.remove(`${this._srcPath}${file}`, (err) => {
+                            if (err) {
+                                console.error('remove failed =>', err.message);
+                            }
+
+                            observer.next();
+                            observer.complete();
+                        });
+                    } else {
+                        observer.next();
+                        observer.complete();
+                    }
                 });
             } else {
                 observer.next();
@@ -144,7 +171,7 @@ class Packaging {
      * Function that _copy all files in dist directory
      */
     process() {
-        Observable.forkJoin(this._files.map((fileObject: FileObject) => this._copy(fileObject.name)
+        Observable.forkJoin(this._files.map((fileObject: FileObject) => this._copy(fileObject.name, fileObject.externals)
             .flatMap(_ => this._remove(fileObject.name, fileObject.remove)))).subscribe(null, error => console.error(error));
     }
 }

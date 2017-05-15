@@ -447,6 +447,10 @@ To set up your development environment:
 
 ## Change History
 
+* v2.3.0 (2017-05-15)
+    * Upgrade all packages' versions
+    * Extended `tsconfig` files
+    * Check file exists in packaging process
 * v2.2.1 (2017-05-02)
     * Upgrade all packages' versions
     * Fix error handler in `getBuffer` method if no `uri` provided
