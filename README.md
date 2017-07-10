@@ -447,6 +447,9 @@ To set up your development environment:
 
 ## Change History
 
+* v2.4.0 (2017-07-10)
+    * Upgrade all packages' versions
+    * Change `no-shadowed-variable` value in `tslint` config
 * v2.3.0 (2017-05-15)
     * Upgrade all packages' versions
     * Extended `tsconfig` files
