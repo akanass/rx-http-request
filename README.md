@@ -456,7 +456,7 @@ To set up your development environment:
 * v2.5.0 (2017-07-18)
     * Upgrade all packages' versions
     * Fix [Issue 11](https://github.com/njl07/rx-http-request/issues/11)
-    * `rxjs` in **peerDependencies**
+    * `rxjs` in **peerDependencies** and need to be installed manually
 * v2.4.0 (2017-07-10)
     * Upgrade all packages' versions
     * Change `no-shadowed-variable` value in `tslint` config
