@@ -7,27 +7,27 @@ After that, launch following commands.
 ### Dependencies
 
 ```sh
-$ npm install --save request rxjs
+$ npm install --save request @types/node @types/request
 ```
 
 or
 
 ```sh
 $ yarn cache clean
-$ yarn add request rxjs
+$ yarn add request @types/node @types/request
 ```
 
 ### Development Dependencies
 
 ```sh
-npm install --save-dev @types/fs-extra @types/node @types/request browserify coveralls exorcist fs-extra istanbul@next mocha mocha-typescript rimraf ts-node tslint typescript unit.js
+npm install --save-dev @types/fs-extra browserify coveralls exorcist fs-extra istanbul@next mocha mocha-typescript rxjs rimraf ts-node tslint typescript unit.js
 ```
 
 or
 
 ```sh
 $ yarn cache clean
-$ yarn add @types/fs-extra @types/node @types/request browserify coveralls exorcist fs-extra istanbul@1.1.0-alpha.1 mocha mocha-typescript rimraf ts-node tslint typescript unit.js --dev
+$ yarn add @types/fs-extra browserify coveralls exorcist fs-extra istanbul@1.1.0-alpha.1 mocha mocha-typescript rxjs rimraf ts-node tslint typescript unit.js --dev
 ```
 
 ## Conclusion

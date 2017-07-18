@@ -58,7 +58,11 @@ The world-famous HTTP client [Request](https://github.com/request/request) now [
 ## Installation
 
 ```sh
-$ npm install @akanass/rx-http-request
+$ npm install --save @akanass/rx-http-request rxjs
+
+or
+
+$ yarn add @akanass/rx-http-request rxjs
 ```
 
 ## Super simple to use
@@ -115,6 +119,8 @@ Just import `browser.js` script and enjoy:
     );
 </script>
 ```
+
+Browser version is a **standalone** version so you just need to `copy/paste` file from `node_modules/@akanass/rx-http-request/browser.js` when you want to create your bundle and change path to it.   
 
 ## API in Detail
 
@@ -447,6 +453,10 @@ To set up your development environment:
 
 ## Change History
 
+* v2.5.0 (2017-07-18)
+    * Upgrade all packages' versions
+    * Fix [Issue 11](https://github.com/njl07/rx-http-request/issues/11)
+    * `rxjs` in **peerDependencies**
 * v2.4.0 (2017-07-10)
     * Upgrade all packages' versions
     * Change `no-shadowed-variable` value in `tslint` config
