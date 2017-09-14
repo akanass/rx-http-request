@@ -7,9 +7,13 @@ import Request = request.Request;
 import CoreOptions = request.CoreOptions;
 import RequiredUriUrl = request.RequiredUriUrl;
 import RequestResponse = request.RequestResponse;
-import RequestCallback = request.RequestCallback;
 
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/observable/bindNodeCallback';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/defaultIfEmpty';
+
 import { RxCookieJar, Cookie } from './RxCookieJar';
 
 // native javascript's objects typings
@@ -187,10 +191,7 @@ export class RxHttpRequest {
      * @return {Observable<RxCookieJar>}
      */
     jar(): Observable<RxCookieJar> {
-        return Observable.create((observer) => {
-            observer.next(new RxCookieJar(this._request.jar()));
-            observer.complete();
-        });
+        return <Observable<RxCookieJar>> Observable.of(new RxCookieJar(this._request.jar()));
     }
 
     /**
@@ -201,10 +202,7 @@ export class RxHttpRequest {
      * @return {Observable<Cookie>}
      */
     cookie(str: string): Observable<Cookie> {
-        return <Observable<Cookie>> Observable.create((observer) => {
-            observer.next(this._request.cookie(<string> str));
-            observer.complete();
-        });
+        return <Observable<Cookie>> Observable.of(this._request.cookie(<string> str));
     }
 
     /**
@@ -219,28 +217,11 @@ export class RxHttpRequest {
      * @private
      */
     private _call(method: string, uri: string, options?: CoreOptions): Observable<RxHttpRequestResponse> {
-        return <Observable<RxHttpRequestResponse>> Observable.create((observer) => {
-            // build params array
-            const params = [].concat(<string> uri, <CoreOptions> Object.assign({}, options || {}),
-                <RequestCallback>(error: any, response: RequestResponse, body: any) => {
-                    if (error) {
-                        return observer.error(error);
-                    }
-
-                    observer.next(<RxHttpRequestResponse> Object.assign({}, {
-                        response: <RequestResponse> response,
-                        body: <any> body
-                    }));
-                    observer.complete();
-                });
-
-            // _call request method
-            try {
-                this._request[<string> method].apply(<RequestAPI<Request, CoreOptions, RequiredUriUrl>> this._request, params);
-            } catch (error) {
-                observer.error(error);
-            }
-        });
+        return (<(uri: string, options?: CoreOptions) => Observable<RxHttpRequestResponse>>
+            Observable.bindNodeCallback(this._request[<string> method]))(<string> uri, <CoreOptions> Object.assign({}, options || {}))
+                .defaultIfEmpty([])
+                .map(_ => !!_ ? _ : [])
+                .map((_: any) => ({response: _.shift(), body: _.pop()}));
     }
 
     /**

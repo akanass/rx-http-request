@@ -6,6 +6,7 @@ import Cookie = request.Cookie;
 import CookieJar = request.CookieJar;
 
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 // native javascript's objects typings
 declare const Object: any;
@@ -63,10 +64,7 @@ export class RxCookieJar {
      * @return {Observable<string>}
      */
     getCookieString(uri: string | url.Url): Observable<string> {
-        return <Observable<string>> Observable.create((observer) => {
-            observer.next(this._cookieJar.getCookieString(<string | url.Url> uri));
-            observer.complete();
-        });
+        return <Observable<string>> Observable.of(this._cookieJar.getCookieString(<string | url.Url> uri));
     }
 
     /**
@@ -77,10 +75,7 @@ export class RxCookieJar {
      * @return {Observable<Cookie[]>}
      */
     getCookies(uri: string | url.Url): Observable<Cookie[]> {
-        return <Observable<Cookie[]>> Observable.create((observer) => {
-            observer.next(this._cookieJar.getCookies(<string | url.Url> uri));
-            observer.complete();
-        });
+        return <Observable<Cookie[]>> Observable.of(this._cookieJar.getCookies(<string | url.Url> uri));
     }
 
     /**

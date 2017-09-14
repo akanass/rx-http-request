@@ -1,15 +1,13 @@
 import { suite, test } from 'mocha-typescript';
 import * as unit from 'unit.js';
 import * as Rx from 'rxjs';
-import * as request from 'request';
-import Cookie = request.Cookie;
 import { RxHR, RxHttpRequest, RxHttpRequestResponse } from '../../src';
 
 // native javascript's objects typings
 declare const TypeError: any;
 
 @suite('- Unit RxHttpRequestTest file')
-class RxHttpRequestTest {
+export class RxHttpRequestTest {
     // private property to store test uri
     private _uri: string;
     // private property to store real instance
@@ -94,7 +92,7 @@ class RxHttpRequestTest {
         const method = 'get';
         this._rxHRMockRequest.expects(method).once().callsArg(2);
 
-        unit.object(this._rxHR['_call'](method, this._uri).subscribe((data: RxHttpRequestResponse) => {
+        this._rxHR['_call'](method, this._uri).subscribe((data: RxHttpRequestResponse) => {
             unit.object(data)
                 .hasOwnProperty('response')
                 .hasOwnProperty('body')
@@ -103,7 +101,7 @@ class RxHttpRequestTest {
                     this._rxHRMockRequest.restore();
                     done();
                 });
-        }));
+        });
     }
 
     /**
@@ -199,7 +197,7 @@ class RxHttpRequestTest {
      */
     @test('- `cookie` method must return an `Observable`')
     testCookieMethod(done) {
-        unit.object(this._rxHR.cookie(null))
+        unit.object(this._rxHR.cookie('test'))
             .isInstanceOf(Rx.Observable)
             .when(_ => done());
     }

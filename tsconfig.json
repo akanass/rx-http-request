@@ -8,6 +8,7 @@
         "sourceMap": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
+        "noUnusedLocals": true,
         "outDir": "./tmp",
         "rootDir": ".",
         "skipLibCheck": true,

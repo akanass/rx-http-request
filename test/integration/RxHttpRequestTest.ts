@@ -3,7 +3,7 @@ import * as unit from 'unit.js';
 import {RxHR, RxHttpRequest, RxCookieJar, RxHttpRequestResponse} from '../../src';
 
 @suite('- Integration RxHttpRequestTest file')
-class RxHttpRequestTest {
+export class RxHttpRequestTest {
     // private property to store test uri
     private _uri: string;
     // private property to store fake test uri
@@ -39,6 +39,19 @@ class RxHttpRequestTest {
     @test('- `Observable` rejects response if bad `method` parameter')
     testAPi(done) {
        this._rxHR.get(this._fakeUri).subscribe(null, err => unit.error(err).when(_ => done()));
+    }
+
+    /**
+     * Test response data in observable
+     */
+    @test('- `Observable` response must be type of `RxHttpRequestResponse`')
+    testObservableResponse(done) {
+        this._rxHR['_call']('get', this._uri).subscribe((data: RxHttpRequestResponse) => {
+            unit.object(data)
+                .hasOwnProperty('response')
+                .hasOwnProperty('body')
+                .when(_ =>  done());
+        });
     }
 
     /**

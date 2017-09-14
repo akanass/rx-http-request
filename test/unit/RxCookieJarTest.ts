@@ -7,7 +7,7 @@ import { RxHR, RxCookieJar } from '../../src';
 declare const TypeError: any;
 
 @suite('- Unit RxCookieJarTest file')
-class RxCookieJarTest {
+export class RxCookieJarTest {
     // private property to store real instance
     private _rxCJ: RxCookieJar;
     // private property to store mock instance
