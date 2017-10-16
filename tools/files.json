@@ -3,8 +3,7 @@
     {"name":"LICENSE.md"},
     {"name":"package.json"},
     {"name":"src"},
-    {"name":"index.js", "remove":true},
-    {"name":"index.js.map", "remove":true},
-    {"name":"index.d.ts", "remove":true},
-    {"name":"lib", "remove":true}
+    {"name":"commonjs", "remove":true},
+    {"name":"es2015", "remove":true},
+    {"name":"typings", "remove":true}
 ]

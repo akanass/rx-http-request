@@ -5,7 +5,7 @@ test:
 coveralls:
 	cat ./coverage/lcov.info | node ./node_modules/.bin/coveralls
 tsc:
-	@node ./node_modules/.bin/tsc -p ./tsconfig.build.json
+	@node ./node_modules/.bin/tsc -p ./tsconfig.build.json | @node ./node_modules/.bin/tsc -p ./tsconfig.build.es2015.json
 clean:
 	@node ./node_modules/.bin/rimraf ./dist
 packaging:

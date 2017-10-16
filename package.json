@@ -1,9 +1,10 @@
 {
     "name": "@akanass/rx-http-request",
-    "version": "2.6.0",
+    "version": "2.7.0",
     "description": "The world-famous HTTP client Request now RxJS compliant, wrote in Typescript | ES6 for client and server side.",
-    "main": "index.js",
-    "types": "index.d.ts",
+    "main": "commonjs/index.js",
+    "module": "es2015/index.js",
+    "types": "typings/index.d.ts",
     "private": false,
     "scripts": {
         "pretest": "make pretest",
