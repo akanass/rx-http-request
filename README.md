@@ -455,6 +455,8 @@ To set up your development environment:
 
 * v2.7.0 (2017-11-15)
     * Upgrade all packages' versions
+    * Fix [Issue 12](https://github.com/njl07/rx-http-request/issues/12)
+    * Fix [Issue 13](https://github.com/njl07/rx-http-request/issues/13)
     * Fix [Issue 15](https://github.com/njl07/rx-http-request/issues/15)
     * Lettable version of `rxjs` operators
     * Update tests

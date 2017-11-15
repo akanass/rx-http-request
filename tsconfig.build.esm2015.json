@@ -1,9 +1,10 @@
 {
     "extends": "./tsconfig.json",
     "compilerOptions": {
-        "outDir": "./commonjs",
+        "module": "es2015",
+        "outDir": "./esm2015",
         "rootDir": "./src",
-        "declarationDir": "."
+        "declaration": false
     },
     "exclude": [
         "node_modules",

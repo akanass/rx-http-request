@@ -1,8 +1,10 @@
 {
     "name": "@akanass/rx-http-request",
-    "version": "2.7.0",
+    "version": "2.7.0-rc.1",
     "description": "The world-famous HTTP client Request now RxJS compliant, wrote in Typescript | ES6 for client and server side.",
-    "main": "index.js",
+    "main": "commonjs/index.js",
+    "module": "esm5/index.js",
+    "es2015": "esm2015/index.js",
     "types": "index.d.ts",
     "private": false,
     "scripts": {
@@ -14,7 +16,7 @@
         "packaging": "make packaging",
         "browserify": "make browserify",
         "prebuild": "make test && make clean",
-        "build": "make tsc",
+        "build": "make commonjs && make esm2015 && make esm5",
         "postbuild": "make packaging && make browserify"
     },
     "repository": {
