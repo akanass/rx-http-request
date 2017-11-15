@@ -453,6 +453,11 @@ To set up your development environment:
 
 ## Change History
 
+* v2.7.0 (2017-11-15)
+    * Upgrade all packages' versions
+    * Fix [Issue 15](https://github.com/njl07/rx-http-request/issues/15)
+    * Lettable version of `rxjs` operators
+    * Update tests
 * v2.6.0 (2017-09-14)
     * Upgrade all packages' versions
     * Add config for `unused` packages error in compilation

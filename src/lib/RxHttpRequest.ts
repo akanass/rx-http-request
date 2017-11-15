@@ -9,10 +9,10 @@ import RequiredUriUrl = request.RequiredUriUrl;
 import RequestResponse = request.RequestResponse;
 
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/observable/bindNodeCallback';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/defaultIfEmpty';
+import { of } from 'rxjs/observable/of';
+import { bindNodeCallback } from 'rxjs/observable/bindNodeCallback';
+import { _throw } from 'rxjs/observable/throw';
+import { map, defaultIfEmpty, flatMap } from 'rxjs/operators';
 
 import { RxCookieJar, Cookie } from './RxCookieJar';
 
@@ -191,7 +191,7 @@ export class RxHttpRequest {
      * @return {Observable<RxCookieJar>}
      */
     jar(): Observable<RxCookieJar> {
-        return <Observable<RxCookieJar>> Observable.of(new RxCookieJar(this._request.jar()));
+        return <Observable<RxCookieJar>> of(new RxCookieJar(this._request.jar()));
     }
 
     /**
@@ -202,7 +202,7 @@ export class RxHttpRequest {
      * @return {Observable<Cookie>}
      */
     cookie(str: string): Observable<Cookie> {
-        return <Observable<Cookie>> Observable.of(this._request.cookie(<string> str));
+        return <Observable<Cookie>> of(this._request.cookie(<string> str));
     }
 
     /**
@@ -218,10 +218,12 @@ export class RxHttpRequest {
      */
     private _call(method: string, uri: string, options?: CoreOptions): Observable<RxHttpRequestResponse> {
         return (<(uri: string, options?: CoreOptions) => Observable<RxHttpRequestResponse>>
-            Observable.bindNodeCallback(this._request[<string> method]))(<string> uri, <CoreOptions> Object.assign({}, options || {}))
-                .defaultIfEmpty([])
-                .map(_ => !!_ ? _ : [])
-                .map((_: any) => ({response: _.shift(), body: _.pop()}));
+            bindNodeCallback(this._request[<string> method]))(<string> uri, <CoreOptions> Object.assign({}, options || {}))
+            .pipe(
+                defaultIfEmpty(undefined),
+                flatMap(_ => !!_ ? of(_) : _throw(new Error('No response found'))),
+                map((_: any) => ({ response: _.shift(), body: _.pop() }))
+            );
     }
 
     /**

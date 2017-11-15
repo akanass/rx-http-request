@@ -2,6 +2,6 @@
 --report lcovonly
 --reporter spec
 --recursive
---compilers ts:ts-node/register
+--require ts-node/register
 --throw-deprecation
 --colors

@@ -1,7 +1,7 @@
 import { suite, test } from 'mocha-typescript';
 import * as unit from 'unit.js';
 import * as Rx from 'rxjs';
-import { RxHR, RxHttpRequest, RxHttpRequestResponse } from '../../src';
+import { RxHR, RxHttpRequest } from '../../src';
 
 // native javascript's objects typings
 declare const TypeError: any;
@@ -69,39 +69,17 @@ export class RxHttpRequestTest {
     /**
      * Test if _call() method calls request API
      */
-    @test('- `_call` method must call `request` API method')
+    @test('- `_call` method must call `request` API method and returns error if no response found')
     testCallMethod(done) {
         // mock request API
         const method = 'get';
         this._rxHRMockRequest.expects(method).once().callsArg(2);
 
-        unit.object(this._rxHR['_call'](method, this._uri).subscribe())
-            .when(_ => {
-                this._rxHRMockRequest.verify();
-                this._rxHRMockRequest.restore();
-                done();
-            });
-    }
-
-    /**
-     * Test response data in observable
-     */
-    @test('- `Observable` response must be type of `RxHttpRequestResponse`')
-    testObservableResponse(done) {
-        // mock request API
-        const method = 'get';
-        this._rxHRMockRequest.expects(method).once().callsArg(2);
-
-        this._rxHR['_call'](method, this._uri).subscribe((data: RxHttpRequestResponse) => {
-            unit.object(data)
-                .hasOwnProperty('response')
-                .hasOwnProperty('body')
-                .when(_ => {
-                    this._rxHRMockRequest.verify();
-                    this._rxHRMockRequest.restore();
-                    done();
-                });
-        });
+        this._rxHR['_call'](method, this._uri).subscribe(undefined, e => unit.string(e.message).is('No response found').when(_ => {
+            this._rxHRMockRequest.verify();
+            this._rxHRMockRequest.restore();
+            done();
+        }));
     }
 
     /**
