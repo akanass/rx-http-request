@@ -99,7 +99,7 @@ RxHR.get('http://www.google.fr').subscribe(
 
 **Rx-Http-Request** can be used in your favorite browser to have all features in your own front application.
 
-Just import `browser.js` script and enjoy:
+Just import `browser/index.js` script and enjoy:
 
 ```javascript
 <script src="node_modules/@akanass/rx-http-request/browser/index.js" type="application/javascript"></script>
@@ -120,7 +120,7 @@ Just import `browser.js` script and enjoy:
 </script>
 ```
 
-Browser version is a **standalone** version so you just need to `copy/paste` file from `node_modules/@akanass/rx-http-request/browser.js` when you want to create your bundle and change path to it.   
+Browser version is a **standalone** version so you just need to `copy/paste` file from `node_modules/@akanass/rx-http-request/browser/index.js` when you want to create your bundle and change path to it.   
 
 ## API in Detail
 
