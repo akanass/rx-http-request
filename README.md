@@ -71,7 +71,7 @@ $ yarn add @akanass/rx-http-request rxjs
 
 It's fully `Typescript` | `ES6` wrotten so you can import it :
 
-```javascript
+```typescript
 import {RxHR} from "@akanass/rx-http-request";
 ```
 
@@ -83,7 +83,7 @@ const RxHR = require('@akanass/rx-http-request').RxHR;
 
 Now, it's easy to perform a `HTTP` request:
 
-```javascript
+```typescript
 RxHR.get('http://www.google.fr').subscribe(
     (data) => {
 
@@ -102,7 +102,7 @@ RxHR.get('http://www.google.fr').subscribe(
 Just import `browser.js` script and enjoy:
 
 ```javascript
-<script src="node_modules/@akanass/rx-http-request/browser.js" type="application/javascript"></script>
+<script src="node_modules/@akanass/rx-http-request/browser/index.js" type="application/javascript"></script>
 <script type="application/javascript">
     const RxHR = rhr.RxHR;
     
@@ -137,7 +137,7 @@ All **methods** to execute on **response object** can be found [here](https://gi
 
 Returns the original [Request](https://github.com/request/request#requestoptions-callback) **API** to perform calls without `RxJS.Observable` response but with a **callback method**.
 
-```javascript
+```typescript
 import {RxHR} from '@akanass/rx-http-request';
 
 RxHR.request({uri: 'http://www.google.fr'}, (error, response, body) => {
@@ -166,7 +166,7 @@ This method **returns a wrapper** around the normal **Rx-Http-Request API**  tha
 
 For example:
  
-```javascript
+```typescript
 // requests using baseRequest will set the 'x-token' header
 const baseRequest = RxHR.defaults({
     headers: {'x-token': 'my-token'}
@@ -194,7 +194,7 @@ Performs a request with `get` http method.
 
 #### Crawl a webpage
 
-```javascript
+```typescript
 import {RxHR} from '@akanass/rx-http-request';
 
 RxHR.get('http://www.google.fr').subscribe(
@@ -210,7 +210,7 @@ RxHR.get('http://www.google.fr').subscribe(
 
 #### GET something from a JSON REST API
      
-```javascript
+```typescript
 import {RxHR} from '@akanass/rx-http-request';
 
 const options = {
@@ -249,7 +249,7 @@ Performs a request with `get` http method and returns a **buffer** in response b
 
 #### GET a buffer image
 
-```javascript
+```typescript
 import {RxHR} from '@akanass/rx-http-request';
 
 RxHR.getBuffer('https://portalstoragewuprod2.azureedge.net/vision/Analysis/1-1.jpg').subscribe(
@@ -279,7 +279,7 @@ Performs a request with `post` http method.
 
 #### POST data to a JSON REST API
 
-```javascript
+```typescript
 import {RxHR} from '@akanass/rx-http-request';
 
 const options = {
@@ -302,7 +302,7 @@ RxHR.post('http://posttestserver.com/posts', options).subscribe(
 
 #### POST like HTML forms do
 
-```javascript
+```typescript
 import {RxHR} from '@akanass/rx-http-request';
 
 const options = {
@@ -338,7 +338,7 @@ Performs a request with `put` http method.
 **Response:**
 > *[RxJS.Observable](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md) instance*
 
-```javascript
+```typescript
 import {RxHR} from '@akanass/rx-http-request';
 
 RxHR.put(uri).subscribe(...);
@@ -357,7 +357,7 @@ Performs a request with `patch` http method.
 **Response:**
 > *[RxJS.Observable](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md) instance*
 
-```javascript
+```typescript
 import {RxHR} from '@akanass/rx-http-request';
 
 RxHR.patch(uri).subscribe(...);
@@ -376,7 +376,7 @@ Performs a request with `delete` http method.
 **Response:**
 > *[RxJS.Observable](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md) instance*
 
-```javascript
+```typescript
 import {RxHR} from '@akanass/rx-http-request';
 
 RxHR.delete(uri).subscribe(...);
@@ -395,7 +395,7 @@ RxHR.delete(uri).subscribe(...);
 
 Performs a request with `head` http method.
 
-```javascript
+```typescript
 import {RxHR} from '@akanass/rx-http-request';
 
 RxHR.head(uri).subscribe(...);
@@ -411,7 +411,7 @@ Creates a new `RxCookieJar` instance
 > *[RxJS.Observable](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md) instance*
 
 
-```javascript
+```typescript
 import {RxHR} from '@akanass/rx-http-request';
 
 RxHR.jar().subscribe(...);
@@ -430,7 +430,7 @@ Creates a new cookie
 > *[RxJS.Observable](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md) instance*
 
  
-```javascript
+```typescript
 import {RxHR} from '@akanass/rx-http-request';
 
 RxHR.cookie('key1=value1').subscribe(...);
@@ -460,6 +460,7 @@ To set up your development environment:
     * Fix [Issue 15](https://github.com/njl07/rx-http-request/issues/15)
     * Lettable version of `rxjs` operators
     * Update tests
+    * Documentation
 * v2.6.0 (2017-09-14)
     * Upgrade all packages' versions
     * Add config for `unused` packages error in compilation
