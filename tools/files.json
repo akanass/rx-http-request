@@ -1,10 +1,5 @@
 [
     {"name":"README.md"},
     {"name":"LICENSE.md"},
-    {"name":"package.json"},
-    {"name":"commonjs", "remove":true},
-    {"name":"esm2015", "remove":true},
-    {"name":"esm5", "remove":true},
-    {"name":"index.d.ts", "remove":true},
-    {"name":"lib", "remove":true}
+    {"name":"package.json"}
 ]

@@ -2,7 +2,7 @@
     "extends": "./tsconfig.json",
     "compilerOptions": {
         "target": "es5",
-        "outDir": "./esm5",
+        "outDir": "./dist/esm5",
         "rootDir": "./src",
         "declaration": false
     },

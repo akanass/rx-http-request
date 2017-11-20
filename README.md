@@ -34,6 +34,7 @@ The world-famous HTTP client [Request](https://github.com/request/request) now [
 * [Installation](#installation)
 * [Super simple to use](#super-simple-to-use)
 * [Browser compatibility](#browser-compatibility)
+* [Build your project with Webpack](#build-your-project-with-webpack)
 * [API in Detail](#api-in-detail)
     * [.request](#request)
     * [.defaults(options)](#defaultsoptions)
@@ -121,6 +122,23 @@ Just import `browser/index.js` script and enjoy:
 ```
 
 Browser version is a **standalone** version so you just need to `copy/paste` file from `node_modules/@akanass/rx-http-request/browser/index.js` when you want to create your bundle and change path to it.   
+
+## Build your project with Webpack
+
+If you want to include this library inside a project builds with `webpack` for a `client` application, you must add this configuration inside your `webpack configuration`:
+
+```javascript
+{
+    target: "web",
+    node: {
+        fs: "empty",
+        net: "empty",
+        tls: "empty"
+    }
+}
+``` 
+
+For a `server` application, `target` will be `node`, `node` block in configuration **doesn't exist** and `uglify` plugin must be `disabled`. 
 
 ## API in Detail
 
@@ -453,7 +471,7 @@ To set up your development environment:
 
 ## Change History
 
-* v2.7.0 (2017-11-15)
+* v2.7.0 (2017-11-20)
     * Upgrade all packages' versions
     * Fix [Issue 12](https://github.com/njl07/rx-http-request/issues/12)
     * Fix [Issue 13](https://github.com/njl07/rx-http-request/issues/13)
