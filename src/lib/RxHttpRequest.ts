@@ -228,8 +228,9 @@ export class RxHttpRequest {
                 flatMap((_: any) => {
                   const body: any = _.pop();
                   const response: any = _.shift();
+                  const rxRequestResponse: RxHttpRequestResponse = {response, body};
                   return response.statusCode >= HttpStatusCodes.BAD_REQUEST ?
-                    _throw(body) : of({response, body});
+                    _throw(rxRequestResponse) : of(rxRequestResponse);
                 })
             );
     }
