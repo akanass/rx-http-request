@@ -8,6 +8,11 @@ export class RxHttpRequestTest {
     private _uri: string;
     // private property to store fake test uri
     private _fakeUri: string;
+    /*
+     * private property to store uri, which always results
+     * in HTTP error status code
+     */
+    private _errCodeUri: string;
     // private property to store real instance
     private _rxHR: RxHttpRequest;
 
@@ -17,6 +22,8 @@ export class RxHttpRequestTest {
     constructor() {
         this._fakeUri = 'http://fake.uri';
         this._uri = 'https://www.google.fr';
+        // make sure, that there will be no guy with such fancy username
+        this._errCodeUri = `https://api.github.com/users/~=29zoiIa,._jffT-jalkjpo-${Math.random()}`
     }
 
     /**
@@ -39,6 +46,14 @@ export class RxHttpRequestTest {
     @test('- `Observable` rejects response if bad `method` parameter')
     testAPi(done) {
        this._rxHR.get(this._fakeUri).subscribe(null, err => unit.error(err).when(_ => done()));
+    }
+
+    /**
+    * Test response error in case of error HTTP status code from the back-end
+    */
+    @test('- `Observable` should be rejected in case of HTTP status code >= 400')
+    testHttpErrStatusCode(done) {
+       this._rxHR['_call']('get', this._errCodeUri).subscribe(null, err => unit.error(err).when(_ => done()));
     }
 
     /**

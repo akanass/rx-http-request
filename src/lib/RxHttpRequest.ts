@@ -12,9 +12,12 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { bindNodeCallback } from 'rxjs/observable/bindNodeCallback';
 import { _throw } from 'rxjs/observable/throw';
-import { map, defaultIfEmpty, flatMap } from 'rxjs/operators';
+import { defaultIfEmpty, flatMap } from 'rxjs/operators';
 
 import { RxCookieJar, Cookie } from './RxCookieJar';
+
+// http status codes
+import { HttpStatusCodes } from './http-status-codes';
 
 // native javascript's objects typings
 declare const Object: any;
@@ -222,7 +225,13 @@ export class RxHttpRequest {
             .pipe(
                 defaultIfEmpty(undefined),
                 flatMap(_ => !!_ ? of(_) : _throw(new Error('No response found'))),
-                map((_: any) => ({ response: _.shift(), body: _.pop() }))
+                flatMap((_: any) => {
+                  const body: any = _.pop();
+                  const response: any = _.shift();
+                  const rxRequestResponse: RxHttpRequestResponse = {response, body};
+                  return response.statusCode >= HttpStatusCodes.BAD_REQUEST ?
+                    _throw(rxRequestResponse) : of(rxRequestResponse);
+                })
             );
     }
 
