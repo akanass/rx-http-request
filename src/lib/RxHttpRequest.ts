@@ -7,12 +7,14 @@ import Request = request.Request;
 import CoreOptions = request.CoreOptions;
 import RequiredUriUrl = request.RequiredUriUrl;
 import RequestResponse = request.RequestResponse;
+import RequestCallback = request.RequestCallback;
 
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
-import { bindNodeCallback } from 'rxjs/observable/bindNodeCallback';
 import { _throw } from 'rxjs/observable/throw';
-import { map, defaultIfEmpty, flatMap } from 'rxjs/operators';
+import { filter, tap, flatMap, map } from 'rxjs/operators';
+import { mergeStatic } from 'rxjs/operators/merge';
+
 
 import { RxCookieJar, Cookie } from './RxCookieJar';
 
@@ -217,13 +219,45 @@ export class RxHttpRequest {
      * @private
      */
     private _call(method: string, uri: string, options?: CoreOptions): Observable<RxHttpRequestResponse> {
-        return (<(uri: string, options?: CoreOptions) => Observable<RxHttpRequestResponse>>
-            bindNodeCallback(this._request[<string> method]))(<string> uri, <CoreOptions> Object.assign({}, options || {}))
-            .pipe(
-                defaultIfEmpty(undefined),
-                flatMap(_ => !!_ ? of(_) : _throw(new Error('No response found'))),
-                map((_: any) => ({ response: _.shift(), body: _.pop() }))
-            );
+        return <Observable<RxHttpRequestResponse>> Observable.create((observer) => {
+            of([].concat(<string> uri, <CoreOptions> Object.assign({}, options || {}),
+                <RequestCallback> ((error: any, response: RequestResponse, body: any) => {
+                    of(of(error))
+                        .pipe(
+                            flatMap(obsError =>
+                                mergeStatic(
+                                    obsError
+                                        .pipe(
+                                            filter(_ => !!_),
+                                            tap(err => observer.error(err))
+                                        ),
+                                    obsError
+                                        .pipe(
+                                            filter(_ => !_),
+                                            flatMap(_ =>
+                                                !!response ?
+                                                    <Observable<RequestResponse>> of(response) :
+                                                    _throw(new Error('No response found'))
+                                            ),
+                                            flatMap(_ =>
+                                                of({
+                                                    response: <RequestResponse> _,
+                                                    body: <any> body
+                                                })
+                                            ),
+                                            tap(_ => observer.next(_)),
+                                            tap(_ => observer.complete())
+                                        )
+                                )
+                            )
+                        )
+                        .subscribe(undefined, err => observer.error(err));
+                })))
+                .pipe(
+                    map(_ => this._request[<string> method].apply(<RequestAPI<Request, CoreOptions, RequiredUriUrl>> this._request, _)),
+                )
+                .subscribe(undefined, err => observer.error(err));
+        });
     }
 
     /**

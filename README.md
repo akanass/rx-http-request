@@ -471,6 +471,10 @@ To set up your development environment:
 
 ## Change History
 
+* v2.7.1 (2018-01-24)
+    * Upgrade all packages' versions
+    * Fix problem with response object with retry process
+    * Documentation
 * v2.7.0 (2017-11-20)
     * Upgrade all packages' versions
     * Fix [Issue 12](https://github.com/njl07/rx-http-request/issues/12)
