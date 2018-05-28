@@ -1,7 +1,7 @@
 // import libraries
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/forkJoin';
-import 'rxjs/add/operator/mergeMap';
+import { forkJoin, Observable } from 'rxjs';
+import { flatMap } from 'rxjs/operators';
+
 import * as fs from 'fs-extra';
 
 /**
@@ -157,22 +157,23 @@ class Packaging {
         };
 
         // read package.json
-        return readJson(`${this._srcPath}${file}`).flatMap(packageObj => {
+        return readJson(`${this._srcPath}${file}`).pipe(flatMap(packageObj => {
             // delete obsolete data in package.json
             delete packageObj.scripts;
             delete packageObj.devDependencies;
 
             // write new package.json
             return writeJson(`${this._destPath}${file}`, packageObj);
-        });
+        }));
     }
 
     /**
      * Function that _copy all files in dist directory
      */
     process() {
-        Observable.forkJoin(this._files.map((fileObject: FileObject) => this._copy(fileObject.name, fileObject.externals)
-            .flatMap(_ => this._remove(fileObject.name, fileObject.remove)))).subscribe(null, error => console.error(error));
+        forkJoin(this._files.map((fileObject: FileObject) => this._copy(fileObject.name, fileObject.externals)
+            .pipe(flatMap(_ => this._remove(fileObject.name, fileObject.remove)))
+            .subscribe(null, error => console.error(error))));
     }
 }
 

@@ -9,11 +9,8 @@ import RequiredUriUrl = request.RequiredUriUrl;
 import RequestResponse = request.RequestResponse;
 import RequestCallback = request.RequestCallback;
 
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
-import { _throw } from 'rxjs/observable/throw';
+import { Observable ,  of , merge,  throwError as _throw } from 'rxjs';
 import { filter, tap, flatMap, map } from 'rxjs/operators';
-import { mergeStatic } from 'rxjs/operators/merge';
 
 
 import { RxCookieJar, Cookie } from './RxCookieJar';
@@ -225,7 +222,7 @@ export class RxHttpRequest {
                     of(of(error))
                         .pipe(
                             flatMap(obsError =>
-                                mergeStatic(
+                                merge(
                                     obsError
                                         .pipe(
                                             filter(_ => !!_),

@@ -5,8 +5,7 @@ import * as url from 'url';
 import Cookie = request.Cookie;
 import CookieJar = request.CookieJar;
 
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
+import { Observable ,  of } from 'rxjs';
 
 // native javascript's objects typings
 declare const Object: any;
