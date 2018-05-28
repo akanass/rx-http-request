@@ -9,7 +9,7 @@ import RequiredUriUrl = request.RequiredUriUrl;
 import RequestResponse = request.RequestResponse;
 import RequestCallback = request.RequestCallback;
 
-import { Observable ,  of , merge,  throwError as _throw } from 'rxjs';
+import { Observable ,  of , merge,  throwError } from 'rxjs';
 import { filter, tap, flatMap, map } from 'rxjs/operators';
 
 
@@ -82,11 +82,11 @@ export class RxHttpRequest {
      * @param uri {string}
      * @param options {CoreOptions}
      *
-     * @return {Observable<RxHttpRequestResponse>}
+     * @return {Observable<RxHttpRequestResponse<R>>}
      */
-    get(uri: string, options?: CoreOptions): Observable<RxHttpRequestResponse> {
-        return <Observable<RxHttpRequestResponse>> this._call.apply(this, [].concat('get', <string> uri,
-            <CoreOptions> Object.assign({}, options || {})));
+    get<R = any>(uri: string, options?: CoreOptions): Observable<RxHttpRequestResponse<R>> {
+        return <Observable<RxHttpRequestResponse<R>>> this._call<R>('get', <string> uri,
+            <CoreOptions> Object.assign({}, options || {}));
     }
 
     /**
@@ -95,17 +95,17 @@ export class RxHttpRequest {
      * @param uri
      * @param options
      *
-     * @return {Observable<RxHttpRequestResponse>}
+     * @return {Observable<RxHttpRequestResponse<R>>}
      */
-    getBuffer(uri: string, options?: CoreOptions): Observable<RxHttpRequestResponse> {
-        return <Observable<RxHttpRequestResponse>> Observable.create((observer) => {
+    getBuffer<R = Buffer>(uri: string, options?: CoreOptions): Observable<RxHttpRequestResponse<R>> {
+        return <Observable<RxHttpRequestResponse<R>>> Observable.create((observer) => {
             try {
                 this._request.get(<string> uri, <CoreOptions> Object.assign({}, options || {}))
                     .on('response', (response: RequestResponse) => {
                         let res: Buffer;
                         response.on('data', (data: Buffer) => res = res ? Buffer.concat([].concat(res, data)) : data);
                         response.on('end', _ => {
-                            observer.next(<RxHttpRequestResponse> Object.assign({}, {
+                            observer.next(<RxHttpRequestResponse<Buffer>> Object.assign({}, {
                                 response: <RequestResponse> response,
                                 body: <Buffer> res
                             }));
@@ -125,11 +125,11 @@ export class RxHttpRequest {
      * @param uri {string}
      * @param options {CoreOptions}
      *
-     * @return {Observable<RxHttpRequestResponse>}
+     * @return {Observable<RxHttpRequestResponse<R>>}
      */
-    post(uri: string, options?: CoreOptions): Observable<RxHttpRequestResponse> {
-        return <Observable<RxHttpRequestResponse>> this._call.apply(this, [].concat('post', <string> uri,
-            <CoreOptions> Object.assign({}, options || {})));
+    post<R = any>(uri: string, options?: CoreOptions): Observable<RxHttpRequestResponse<R>> {
+        return <Observable<RxHttpRequestResponse<R>>> this._call<R>('post', <string> uri,
+            <CoreOptions> Object.assign({}, options || {}));
     }
 
     /**
@@ -138,11 +138,11 @@ export class RxHttpRequest {
      * @param uri {string}
      * @param options {CoreOptions}
      *
-     * @return {Observable<RxHttpRequestResponse>}
+     * @return {Observable<RxHttpRequestResponse<R>>}
      */
-    put(uri: string, options?: CoreOptions): Observable<RxHttpRequestResponse> {
-        return <Observable<RxHttpRequestResponse>> this._call.apply(this, [].concat('put', <string> uri,
-            <CoreOptions> Object.assign({}, options || {})));
+    put<R = any>(uri: string, options?: CoreOptions): Observable<RxHttpRequestResponse<R>> {
+        return <Observable<RxHttpRequestResponse<R>>> this._call<R>('put', <string> uri,
+            <CoreOptions> Object.assign({}, options || {}));
     }
 
     /**
@@ -151,11 +151,11 @@ export class RxHttpRequest {
      * @param uri {string}
      * @param options {CoreOptions}
      *
-     * @return {Observable<RxHttpRequestResponse>}
+     * @return {Observable<RxHttpRequestResponse<R>>}
      */
-    patch(uri: string, options?: CoreOptions): Observable<RxHttpRequestResponse> {
-        return <Observable<RxHttpRequestResponse>> this._call.apply(this, [].concat('patch', <string> uri,
-            <CoreOptions> Object.assign({}, options || {})));
+    patch<R = any>(uri: string, options?: CoreOptions): Observable<RxHttpRequestResponse<R>> {
+        return <Observable<RxHttpRequestResponse<R>>> this._call<R>('patch', <string> uri,
+            <CoreOptions> Object.assign({}, options || {}));
     }
 
     /**
@@ -164,11 +164,11 @@ export class RxHttpRequest {
      * @param uri {string}
      * @param options {CoreOptions}
      *
-     * @return {Observable<RxHttpRequestResponse>}
+     * @return {Observable<RxHttpRequestResponse<R>>}
      */
-    delete(uri: string, options?: CoreOptions): Observable<RxHttpRequestResponse> {
-        return <Observable<RxHttpRequestResponse>> this._call.apply(this, [].concat('del', <string> uri,
-            <CoreOptions> Object.assign({}, options || {})));
+    delete<R = any>(uri: string, options?: CoreOptions): Observable<RxHttpRequestResponse<R>> {
+        return <Observable<RxHttpRequestResponse<R>>> this._call<R>('del', <string> uri,
+            <CoreOptions> Object.assign({}, options || {}));
     }
 
     /**
@@ -177,11 +177,11 @@ export class RxHttpRequest {
      * @param uri {string}
      * @param options {CoreOptions}
      *
-     * @return {Observable<RxHttpRequestResponse>}
+     * @return {Observable<RxHttpRequestResponse<R>>}
      */
-    head(uri: string, options?: CoreOptions): Observable<RxHttpRequestResponse> {
-        return <Observable<RxHttpRequestResponse>> this._call.apply(this, [].concat('head', <string> uri,
-            <CoreOptions> Object.assign({}, options || {})));
+    head<R = any>(uri: string, options?: CoreOptions): Observable<RxHttpRequestResponse<R>> {
+        return <Observable<RxHttpRequestResponse<R>>> this._call<R>('head', <string> uri,
+            <CoreOptions> Object.assign({}, options || {}));
     }
 
     /**
@@ -211,14 +211,14 @@ export class RxHttpRequest {
      * @param uri {string}
      * @param options {CoreOptions}
      *
-     * @return {Observable<RxHttpRequestResponse>}
+     * @return {Observable<RxHttpRequestResponse<R>>}
      *
      * @private
      */
-    private _call(method: string, uri: string, options?: CoreOptions): Observable<RxHttpRequestResponse> {
-        return <Observable<RxHttpRequestResponse>> Observable.create((observer) => {
+    private _call<R = any>(method: string, uri: string, options?: CoreOptions): Observable<RxHttpRequestResponse<R>> {
+        return <Observable<RxHttpRequestResponse<R>>> Observable.create((observer) => {
             of([].concat(<string> uri, <CoreOptions> Object.assign({}, options || {}),
-                <RequestCallback> ((error: any, response: RequestResponse, body: any) => {
+                <RequestCallback> ((error: any, response: RequestResponse, body: R) => {
                     of(of(error))
                         .pipe(
                             flatMap(obsError =>
@@ -234,12 +234,12 @@ export class RxHttpRequest {
                                             flatMap(_ =>
                                                 !!response ?
                                                     <Observable<RequestResponse>> of(response) :
-                                                    _throw(new Error('No response found'))
+                                                    throwError(new Error('No response found'))
                                             ),
                                             flatMap(_ =>
                                                 of({
                                                     response: <RequestResponse> _,
-                                                    body: <any> body
+                                                    body: <R> body
                                                 })
                                             ),
                                             tap(_ => observer.next(_)),
@@ -289,9 +289,9 @@ export const RxHR: RxHttpRequest = RxHttpRequest.instance();
 /**
  * Export response interface
  */
-export interface RxHttpRequestResponse {
+export interface RxHttpRequestResponse<R = any> {
     response: RequestResponse;
-    body: any;
+    body: R;
 }
 
 /**
