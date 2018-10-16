@@ -471,6 +471,11 @@ To set up your development environment:
 
 ## Change History
 
+* v3.1.0 (2018-10-16)
+    * Upgrade all packages' versions
+    * Migrate tests to [jest](https://jestjs.io/en/) and [ts-jest](https://kulshekhar.github.io/ts-jest/)
+    * Refactor files' names
+    * Documentation
 * v3.0.0 (2018-05-28)
     * Upgrade to `rxjs` v6+ ([#29](https://github.com/njl07/rx-http-request/pull/29))
     * Add `generics` in response ([#28](https://github.com/njl07/rx-http-request/issues/28))

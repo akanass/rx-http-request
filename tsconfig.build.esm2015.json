@@ -4,7 +4,11 @@
         "module": "es2015",
         "outDir": "./dist/esm2015",
         "rootDir": "./src",
-        "declaration": false
+        "declaration": false,
+        "types": [
+            "node",
+            "request"
+        ]
     },
     "exclude": [
         "node_modules",

@@ -13,7 +13,7 @@ import { Observable ,  of , merge,  throwError } from 'rxjs';
 import { filter, tap, flatMap, map } from 'rxjs/operators';
 
 
-import { RxCookieJar, Cookie } from './RxCookieJar';
+import { RxCookieJar, Cookie } from './rx-cookie-jar';
 
 // native javascript's objects typings
 declare const Object: any;
@@ -25,7 +25,7 @@ export class RxHttpRequest {
     // private property to store singleton instance
     private static _instance: RxHttpRequest;
     // private property to store request API object
-    private _request: RequestAPI<Request, CoreOptions, RequiredUriUrl>;
+    private readonly _request: RequestAPI<Request, CoreOptions, RequiredUriUrl>;
 
     /**
      * Returns singleton instance
@@ -112,7 +112,7 @@ export class RxHttpRequest {
                             observer.complete();
                         });
                     })
-                    .on('error', error => observer.error(error));
+                    .on('error', /* istanbul ignore next */ error => observer.error(error));
             } catch (error) {
                 observer.error(error);
             }

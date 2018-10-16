@@ -16,7 +16,8 @@
         "typeRoots": ["./node_modules/@types"],
         "types": [
             "node",
-            "request"
+            "request",
+            "jest"
         ],
         "lib": [
             "dom",

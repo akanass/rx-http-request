@@ -3,7 +3,11 @@
     "compilerOptions": {
         "outDir": "./dist/commonjs",
         "rootDir": "./src",
-        "declarationDir": "./dist"
+        "declarationDir": "./dist",
+        "types": [
+            "node",
+            "request"
+        ]
     },
     "exclude": [
         "node_modules",
