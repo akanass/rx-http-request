@@ -2,17 +2,17 @@
 
 <div style="overflow:hidden;margin-bottom:20px;">
 <div style="float:left;line-height:60px">
-    <a href="https://travis-ci.org/njl07/rx-http-request.svg?branch=master">
-        <img src="https://travis-ci.org/njl07/rx-http-request.svg?branch=master" alt="build" />
+    <a href="https://travis-ci.org/akanass/rx-http-request.svg?branch=master">
+        <img src="https://travis-ci.org/akanass/rx-http-request.svg?branch=master" alt="build" />
     </a>
-    <a href="https://coveralls.io/github/njl07/rx-http-request?branch=master">
-        <img src="https://coveralls.io/repos/github/njl07/rx-http-request/badge.svg?branch=master" alt="coveralls" />
+    <a href="https://coveralls.io/github/akanass/rx-http-request?branch=master">
+        <img src="https://coveralls.io/repos/github/akanass/rx-http-request/badge.svg?branch=master" alt="coveralls" />
     </a>
-    <a href="https://david-dm.org/njl07/rx-http-request">
-        <img src="https://david-dm.org/njl07/rx-http-request.svg" alt="dependencies" />
+    <a href="https://david-dm.org/akanass/rx-http-request">
+        <img src="https://david-dm.org/akanass/rx-http-request.svg" alt="dependencies" />
     </a>
-    <a href="https://david-dm.org/njl07/rx-http-request?type=dev">
-        <img src="https://david-dm.org/njl07/rx-http-request/dev-status.svg" alt="devDependencies" />
+    <a href="https://david-dm.org/akanass/rx-http-request?type=dev">
+        <img src="https://david-dm.org/akanass/rx-http-request/dev-status.svg" alt="devDependencies" />
     </a>
 </div>
 <div style="float:right;">
@@ -471,14 +471,18 @@ To set up your development environment:
 
 ## Change History
 
+* v3.2.0 (2019-07-08)
+    * Upgrade all packages' versions
+    * Fix tests
+    * Documentation
 * v3.1.0 (2018-10-16)
     * Upgrade all packages' versions
     * Migrate tests to [jest](https://jestjs.io/en/) and [ts-jest](https://kulshekhar.github.io/ts-jest/)
     * Refactor files' names
     * Documentation
 * v3.0.0 (2018-05-28)
-    * Upgrade to `rxjs` v6+ ([#29](https://github.com/njl07/rx-http-request/pull/29))
-    * Add `generics` in response ([#28](https://github.com/njl07/rx-http-request/issues/28))
+    * Upgrade to `rxjs` v6+ ([#29](https://github.com/akanass/rx-http-request/pull/29))
+    * Add `generics` in response ([#28](https://github.com/akanass/rx-http-request/issues/28))
     * Upgrade all packages' versions
     * Documentation
 * v2.7.1 (2018-01-24)
@@ -487,9 +491,9 @@ To set up your development environment:
     * Documentation
 * v2.7.0 (2017-11-20)
     * Upgrade all packages' versions
-    * Fix [Issue 12](https://github.com/njl07/rx-http-request/issues/12)
-    * Fix [Issue 13](https://github.com/njl07/rx-http-request/issues/13)
-    * Fix [Issue 15](https://github.com/njl07/rx-http-request/issues/15)
+    * Fix [Issue 12](https://github.com/akanass/rx-http-request/issues/12)
+    * Fix [Issue 13](https://github.com/akanass/rx-http-request/issues/13)
+    * Fix [Issue 15](https://github.com/akanass/rx-http-request/issues/15)
     * Lettable version of `rxjs` operators
     * Update tests
     * Documentation
@@ -500,7 +504,7 @@ To set up your development environment:
     * Update tests
 * v2.5.0 (2017-07-18)
     * Upgrade all packages' versions
-    * Fix [Issue 11](https://github.com/njl07/rx-http-request/issues/11)
+    * Fix [Issue 11](https://github.com/akanass/rx-http-request/issues/11)
     * `rxjs` in **peerDependencies** and need to be installed manually
 * v2.4.0 (2017-07-10)
     * Upgrade all packages' versions
@@ -519,7 +523,7 @@ To set up your development environment:
     * Export all initial elements from request to have them in library
 * v2.1.1 (2017-03-23)
     * Upgrade all packages' versions
-    * [Fix `request typings` installation](https://github.com/njl07/rx-http-request/issues/8)
+    * [Fix `request typings` installation](https://github.com/akanass/rx-http-request/issues/8)
 * v2.1.0 (2017-03-09)
     * Upgrade `Request` version to `v2.80.0`
 * v2.0.0 (2017-02-28)
@@ -531,8 +535,8 @@ To set up your development environment:
 * v1.2.0 (2016-09-29)
     * New package version for `RxJS` and `Request`
     * New `ES6` features
-    * [Issue 1](https://github.com/njl07/rx-http-request/issues/1)
-    * [Issue 2](https://github.com/njl07/rx-http-request/issues/2)
+    * [Issue 1](https://github.com/akanass/rx-http-request/issues/1)
+    * [Issue 2](https://github.com/akanass/rx-http-request/issues/2)
 * v1.1.0 (2016-03-28)
     * Browserify to have browser compatibility
 * v1.0.0 (2016-03-27)
@@ -542,6 +546,6 @@ To set up your development environment:
 
 ## License
 
-Copyright (c) 2017 **Nicolas Jessel** Licensed under the [MIT license](https://github.com/njl07/rx-http-request/tree/master/LICENSE.md).
+Copyright (c) 2019 **Nicolas Jessel** Licensed under the [MIT license](https://github.com/akanass/rx-http-request/tree/master/LICENSE.md).
 
 [Back to top](#table-of-contents)

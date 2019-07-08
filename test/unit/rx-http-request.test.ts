@@ -29,10 +29,10 @@ describe('- Unit rx-http-request.test.ts file', () => {
      * Test if _call() method calls request API
      */
     test('- `_call` method must call `request` API method and returns error if no response found', () => {
-        const spy = jest.spyOn(RxHR.request, 'get');
-        spy.mockImplementationOnce((uri, opts, cb) => cb());
+        const spy = jest.spyOn<any, any>(RxHR.request, 'get');
+        spy.mockImplementationOnce((uri, opts, cb: any) => cb());
 
-        RxHR['_call']('get', uri).subscribe(undefined, e => {
+        RxHR['_call']('get', uri).subscribe(() => undefined, e => {
             expect(e.message).toBe('No response found');
             expect(spy).toHaveBeenCalled();
             spy.mockRestore();
@@ -44,7 +44,7 @@ describe('- Unit rx-http-request.test.ts file', () => {
      */
     test('- `Observable` rejects response if bad `method` parameter', () => {
         RxHR['_call']('unknown_method', uri)
-            .subscribe(undefined, e => expect(e.message).toBe('Cannot read property \'apply\' of undefined'));
+            .subscribe(() => undefined, e => expect(e.message).toBe('Cannot read property \'apply\' of undefined'));
     });
 
     /**

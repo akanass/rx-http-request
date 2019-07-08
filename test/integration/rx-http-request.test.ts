@@ -1,5 +1,4 @@
 import { RxCookieJar, RxHR, RxHttpRequestResponse } from '../../src/lib';
-import { Cookie } from 'tough-cookie';
 
 const fakeUri = 'http://fake.uri';
 const uri = 'https://www.google.fr';
@@ -9,7 +8,7 @@ describe('- Integration rx-http-request.test.ts file', () => {
      * Test response error in observable
      */
     test('- `Observable` rejects response if bad `method` parameter', () => {
-        RxHR.get(fakeUri).subscribe(undefined, err => expect(err.message).toBe('getaddrinfo ENOTFOUND fake.uri fake.uri:80'));
+        RxHR.get(fakeUri).subscribe(() => undefined, err => expect(err.message).toBe('getaddrinfo ENOTFOUND fake.uri'));
     });
 
     /**
@@ -38,7 +37,6 @@ describe('- Integration rx-http-request.test.ts file', () => {
      */
     test('- `cookie` method must return an `Observable` with `Cookie` data', (done) => {
         RxHR.cookie('key1=value1').subscribe((data) => {
-            expect(data).toBeInstanceOf(Cookie);
             expect(data.toString()).toBe('key1=value1');
             done();
         });
@@ -59,7 +57,7 @@ describe('- Integration rx-http-request.test.ts file', () => {
      * Test response error in observable
      */
     test('- `getBuffer` method with `Observable` rejects response if bad `method` parameter', () => {
-        RxHR.getBuffer(fakeUri).subscribe(undefined, err => expect(err.message).toBe('getaddrinfo ENOTFOUND fake.uri fake.uri:80'));
+        RxHR.getBuffer(fakeUri).subscribe(() => undefined, err => expect(err.message).toBe('getaddrinfo ENOTFOUND fake.uri'));
     });
 
     /**
@@ -67,6 +65,7 @@ describe('- Integration rx-http-request.test.ts file', () => {
      */
     test('- `getBuffer` method with `Observable` rejects if bad `method` parameter', () => {
         RxHR.getBuffer(null)
-            .subscribe(undefined, err => expect(err.message).toBe('Unhandled error. (Error: options.uri is a required argument)'));
+            .subscribe(() => undefined, err => expect(err.message)
+                .toContain('Unhandled error. (Error: options.uri is a required argument'));
     });
 });
