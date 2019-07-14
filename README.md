@@ -31,30 +31,33 @@ The world-famous HTTP client [Request](https://github.com/request/request) now [
 
 ## Table of contents
 
-* [Installation](#installation)
-* [Super simple to use](#super-simple-to-use)
-* [Browser compatibility](#browser-compatibility)
-* [Build your project with Webpack](#build-your-project-with-webpack)
-* [API in Detail](#api-in-detail)
-    * [.request](#request)
-    * [.defaults(options)](#defaultsoptions)
-    * [.get(uri[,options])](#geturi-options)
-        * [Crawl a webpage](#crawl-a-webpage)
-        * [GET something from a JSON REST API](#get-something-from-a-json-rest-api)
-    * [.getBuffer(uri[,options])](#getbufferuri-options)
-        * [GET a buffer image](#get-a-buffer-image)
-    * [.post(uri[,options])](#posturi-options)
-        * [POST data to a JSON REST API](#post-data-to-a-json-rest-api)
-        * [POST like HTML forms do](#post-like-html-forms-do)
-    * [.put(uri[,options])](#puturi-options)
-    * [.patch(uri[,options])](#patchuri-options)
-    * [.delete(uri[,options])](#deleteuri-options)
-    * [.head(uri[,options])](#headuri-options)
-    * [.jar()](#jar)
-    * [.cookie(str)](#cookiestr)
-* [Contributing](#contributing)
-* [Change History](#change-history)
-* [License](#license)
+- [Rx-Http-Request](#Rx-Http-Request)
+  - [Table of contents](#Table-of-contents)
+  - [Installation](#Installation)
+  - [Super simple to use](#Super-simple-to-use)
+  - [Browser compatibility](#Browser-compatibility)
+  - [Build your project with Webpack](#Build-your-project-with-Webpack)
+  - [API in Detail](#API-in-Detail)
+    - [`.request`](#request)
+    - [`.defaults(options)`](#defaultsoptions)
+    - [`.get(uri[, options])`](#geturi-options)
+      - [Crawl a webpage](#Crawl-a-webpage)
+      - [GET something from a JSON REST API](#GET-something-from-a-JSON-REST-API)
+    - [`.getBuffer(uri[, options])`](#getBufferuri-options)
+      - [GET a buffer image](#GET-a-buffer-image)
+    - [`.post(uri[, options])`](#posturi-options)
+      - [POST data to a JSON REST API](#POST-data-to-a-JSON-REST-API)
+      - [POST like HTML forms do](#POST-like-HTML-forms-do)
+    - [`.put(uri[, options])`](#puturi-options)
+    - [`.patch(uri[, options])`](#patchuri-options)
+    - [`.delete(uri[, options])`](#deleteuri-options)
+    - [`.head(uri[, options])`](#headuri-options)
+    - [`.options(uri[, options])`](#optionsuri-options)
+    - [`.jar()`](#jar)
+    - [`.cookie(str)`](#cookiestr)
+  - [Contributing](#Contributing)
+  - [Change History](#Change-History)
+  - [License](#License)
 
 ## Installation
 
@@ -417,6 +420,25 @@ Performs a request with `head` http method.
 import {RxHR} from '@akanass/rx-http-request';
 
 RxHR.head(uri).subscribe(...);
+```
+
+[Back to top](#table-of-contents)
+
+### `.options(uri[, options])`
+
+**Parameters:**
+> - ***uri*** *(required): The `uri` where request will be performed*
+> - ***options*** *(optional): Original [Request](https://github.com/request/request#requestoptions-callback) `options` object*
+
+**Response:**
+> *[RxJS.Observable](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md) instance*
+
+Performs a request with `options` http method.
+
+```typescript
+import {RxHR} from '@akanass/rx-http-request';
+
+RxHR.options(uri).subscribe(...);
 ```
 
 [Back to top](#table-of-contents)
