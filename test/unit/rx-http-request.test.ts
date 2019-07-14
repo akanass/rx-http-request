@@ -97,6 +97,13 @@ describe('- Unit rx-http-request.test.ts file', () => {
     });
 
     /**
+     * Test options() method returns an Observable
+     */
+    test('- `options` method must return an `Observable`', () => {
+        expect(RxHR.options(uri)).toBeInstanceOf(Observable);
+    });
+
+    /**
      * Test jar() method returns an Observable
      */
     test('- `jar` method must return an `Observable`', () => {
