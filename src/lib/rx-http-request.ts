@@ -185,6 +185,19 @@ export class RxHttpRequest {
     }
 
     /**
+     * Function to do a OPTIONS HTTP request
+     *
+     * @param uri {string}
+     * @param options {CoreOptions}
+     *
+     * @return {Observable<RxHttpRequestResponse<R>>}
+     */
+    options<R = any>(uri: string, options?: CoreOptions): Observable<RxHttpRequestResponse<R>> {
+        return <Observable<RxHttpRequestResponse<R>>> this._call<R>('options', <string> uri,
+            <CoreOptions> Object.assign({}, options || {}));
+    }
+
+    /**
      * Function that creates a new rx cookie jar
      *
      * @return {Observable<RxCookieJar>}
