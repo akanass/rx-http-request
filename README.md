@@ -493,6 +493,10 @@ To set up your development environment:
 
 ## Change History
 
+* v3.3.0 (2019-07-15)
+    * Merge [PR #30](https://github.com/akanass/rx-http-request/pull/30)
+    * Upgrade all packages' versions
+    * Documentation
 * v3.2.0 (2019-07-08)
     * Upgrade all packages' versions
     * Fix tests
